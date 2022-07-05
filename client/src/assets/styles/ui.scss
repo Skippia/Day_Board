@@ -1,0 +1,138 @@
+:root {
+  --primary-color: #0071fe;
+  --error-color: #f23648;
+  --error-bg-color: #fddfe2;
+  --success-color: #21a67a;
+  --success-bg-color: #e0eee4;
+}
+
+.rotate-transform {
+  position: relative;
+  padding: 0.5em 0.5em;
+}
+
+.rotate-transform__text {
+  text-align: center;
+  writing-mode: vertical-lr;
+  transform: rotateZ(-170deg);
+  white-space: pre;
+}
+
+.invalid {
+  background-color: #9e2a2b;
+  color: white;
+}
+
+.submit-btn.invalid {
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+
+  10% {
+    transform: translate(-1px, -2px);
+  }
+
+  20% {
+    transform: translate(-3px, 0px);
+  }
+
+  30% {
+    transform: translate(3px, 2px);
+  }
+
+  40% {
+    transform: translate(1px, -1px);
+  }
+
+  50% {
+    transform: translate(-1px, 2px);
+  }
+
+  60% {
+    transform: translate(-3px, 1px);
+  }
+
+  70% {
+    transform: translate(3px, 1px);
+  }
+
+  80% {
+    transform: translate(-1px, -1px);
+  }
+
+  90% {
+    transform: translate(1px, 2px);
+  }
+
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.submit-btn:hover {
+  transform: scale(1.1);
+}
+
+.help-message {
+  color: #2ec4b6;
+  font-weight: 400;
+}
+
+.error-message {
+  color: #ee9b00;
+  font-weight: 400;
+}
+
+input:focus {
+  outline: 1px solid rgba(200, 200, 200, 0.5);
+}
+
+.button-cyberpunk {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em 1em;
+  position: relative;
+  text-transform: uppercase;
+  border: solid;
+  border-color: #07547d;
+  border-radius: 1%;
+  font-size: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+
+.notification {
+  position: absolute;
+  left: 50%;
+  top: 2%;
+  text-align: center;
+  font-size: 27px;
+  padding: 20px;
+  width: 30%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  border: 2px solid rgba(231, 250, 26, 0.8);
+  clip-path: polygon(10% 0, 100% 0, 100% 30%, 100% 70%, 90% 100%, 30% 100%, 0 100%, 0 30%);
+}
+
+.notification--fail {
+  background-color: rgba(155, 34, 38, .7);
+}
+
+.notification--success {
+  background-color: rgba(33, 131, 128, 0.95);
+}
+
+.tab-toggle-active {
+  background-color: rgba(50, 2, 31, .6);
+
+}
+
