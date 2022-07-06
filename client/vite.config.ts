@@ -6,7 +6,9 @@ import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import Unocss from 'unocss/vite'
+import UnoCSS from 'unocss/vite'
+import { presetAttributify, presetUno } from 'unocss'
+import transformerDirective from '@unocss/transformer-directives'
 
 export default defineConfig({
   resolve: {
@@ -41,15 +43,28 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       dirs: [
-        'src/components',
-        'src/layouts',
+        './src/components',
+        './src/layouts',
+        './src/atoms',
+        './src/molecules',
+        './src/organisms',
+        './src/pages',
+        './src/templates',
       ],
       dts: true,
     }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss(),
+    UnoCSS({
+      presets: [
+        presetUno(),
+        presetAttributify(),
+      ],
+      transformers: [
+        transformerDirective(),
+      ],
+    }),
   ],
 
   // https://github.com/vitest-dev/vitest

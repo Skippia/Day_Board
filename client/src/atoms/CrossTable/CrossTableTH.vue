@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { type Ref, onMounted, ref } from 'vue'
-
 interface Props {
   attributes?: Array<{
     name: string
@@ -10,7 +8,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const th: Ref<HTMLElement | null> = ref(null)
+const th = ref<HTMLElement>()
 
 onMounted(() => {
   props.attributes?.forEach((attribute) => {
@@ -28,8 +26,5 @@ onMounted(() => {
 <style lang="scss" scoped>
 th {
   font-size: 14px;
-  // border-bottom: 0.5px solid rgba(24, 116, 205, 0.4);
-  // padding: 5px 0;
-  // border-collapse: separate;
 }
 </style>

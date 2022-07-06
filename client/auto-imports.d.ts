@@ -54,6 +54,7 @@ declare global {
   const useCounterStore: typeof import('./src/stores/useStoreAdmin')['useCounterStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDelayRenderFix: typeof import('./src/hooks/useDelayRenderFix')['useDelayRenderFix']
   const useGenerateColor: typeof import('./src/hooks/useGenerateColor')['useGenerateColor']
   const useInitStartValues: typeof import('./src/hooks/useInitStartValues')['useInitStartValues']
   const usePaintTableCell: typeof import('./src/hooks/usePaintTableCell')['usePaintTableCell']
@@ -64,6 +65,7 @@ declare global {
   const useStoreUser: typeof import('./src/stores/useStoreUser')['useStoreUser']
   const useTableFireAction: typeof import('./src/hooks/useTableFireAction')['useTableFireAction']
   const useTableHoverAction: typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']
+  const useTabs: typeof import('./src/hooks/useTabs')['useTabs']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -126,6 +128,7 @@ declare module '@vue/runtime-core' {
     readonly useCounterStore: UnwrapRef<typeof import('./src/stores/useStoreAdmin')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDelayRenderFix: UnwrapRef<typeof import('./src/hooks/useDelayRenderFix')['useDelayRenderFix']>
     readonly useGenerateColor: UnwrapRef<typeof import('./src/hooks/useGenerateColor')['useGenerateColor']>
     readonly useInitStartValues: UnwrapRef<typeof import('./src/hooks/useInitStartValues')['useInitStartValues']>
     readonly usePaintTableCell: UnwrapRef<typeof import('./src/hooks/usePaintTableCell')['usePaintTableCell']>
@@ -136,6 +139,7 @@ declare module '@vue/runtime-core' {
     readonly useStoreUser: UnwrapRef<typeof import('./src/stores/useStoreUser')['useStoreUser']>
     readonly useTableFireAction: UnwrapRef<typeof import('./src/hooks/useTableFireAction')['useTableFireAction']>
     readonly useTableHoverAction: UnwrapRef<typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']>
+    readonly useTabs: UnwrapRef<typeof import('./src/hooks/useTabs')['useTabs']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

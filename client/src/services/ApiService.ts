@@ -15,9 +15,8 @@ const useFetch = ({ url, method, apiConfig }: { url: string; method: TNetworkMet
 
       data = data?.data
     }
-    catch (e) {
-      // @ts-expect-error absence axios type
-      error = e.response.data.message
+    catch (e: any) {
+      error = e?.response?.data?.message
     }
     return { data, error }
   }

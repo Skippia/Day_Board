@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import CrossTableTH from './_components/CrossTableTH.vue'
-import CrossTableTD from './_components/CrossTableTD.vue'
-import type { MapperForCrossTable } from './TCrossTable'
+import type { MapperForCrossTable } from '~/types/TCrossTable'
 
 interface Props {
   xMapper: MapperForCrossTable
@@ -12,6 +10,8 @@ interface Props {
   //* Render content within each cell of table
   contentFunction?: (sourceX: string, sourceY: string) => string
 }
+
+// @ts-expect-error really is used
 const props = defineProps<Props>()
 </script>
 

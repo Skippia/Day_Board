@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { useStoreUser } from '../stores/useStoreUser'
-import StatsPanel from '~/components/StatsPanel/StatsPanel.vue'
 import { usePaintTableCell } from '~/hooks/usePaintTableCell'
 import { useInitStartValues } from '~/hooks/useInitStartValues'
 import { useTableFireAction } from '~/hooks/useTableFireAction'
 import { useTableHoverAction } from '~/hooks/useTableHoverAction'
-// import CrossTable from '~/modules/__reusable__/CrossTable/CrossTable.vue'
 import { useGenerateColor } from '~/hooks/useGenerateColor'
 
 const StoreUser = useStoreUser()
@@ -40,7 +38,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container bg-no-repeat min-h-screen min-w-full flex p-2">
+  <div class="home black-gradient">
     <CrossTable
       ref="table" class="w-[85%]" :x-mapper="xMapper" :y-mapper="yMapper"
       :th-root-horizontal-classes="['rotate-transform', 'border-r-2', 'border-b-2']"
@@ -65,7 +63,11 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.container {
+.home {
+  @apply bg-no-repeat min-h-screen min-w-full flex p-2;
+}
+
+.black-gradient {
   background-image: linear-gradient(to right bottom, #000000, #090808, #10100f, #161515, #1a1a19);
 }
 </style>

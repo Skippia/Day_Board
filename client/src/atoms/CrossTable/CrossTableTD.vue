@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { type Ref, onMounted, ref } from 'vue'
-
 interface Props {
   attributes?: Array<{
     name: string
@@ -10,7 +8,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const td: Ref<HTMLElement | null> = ref(null)
+const td = ref<HTMLElement>()
 
 onMounted(() => {
   props.attributes?.forEach((attribute) => {

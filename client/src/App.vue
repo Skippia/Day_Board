@@ -9,29 +9,10 @@
 </template>
 
 <style lang="scss">
+@import '~/assets/styles/transitionAnimation.scss';
+
 #app {
   overflow-x: hidden;
   background-color: rgba(10, 9, 7, 1);
-}
-
-.route-enter-from {}
-
-.route-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.route-enter-to,
-.route-leave-from {
-  opacity: 1;
-  transform: translatY(0);
-}
-
-.route-enter-active {
-  transition: all 0.5s ease;
-}
-
-.route-leave-active {
-  transition: all 0.5s ease;
 }
 </style>

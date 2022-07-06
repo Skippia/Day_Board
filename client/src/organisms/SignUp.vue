@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { Form } from 'vee-validate'
 import * as Yup from 'yup'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-const storeAuth = useStoreAuth()
+
 const inputFormData = [
   {
     'placeholder': 'Enter your email',
@@ -13,23 +11,32 @@ const inputFormData = [
     'success-message': 'Right email!',
   },
   {
+    'placeholder': 'Enter your name',
+    'type': 'text',
+    'label': 'Name',
+    'name': 'name',
+    'success-message': 'Wonderful name!',
+  },
+  {
     'placeholder': 'Enter your password',
     'type': 'password',
     'label': 'Password',
     'name': 'password',
     'success-message': 'Nice secure!',
   },
+  {
+    'placeholder': 'Confirm your password',
+    'type': 'password',
+    'label': 'Confirm password',
+    'name': 'confirm_password',
+    'success-message': 'Nice secure!',
+  },
 ]
+
 function onSubmit(values: object) {
-  // @ts-expect-error really is
-  storeAuth.login({ email: values?.email, password: values?.password }).then((successLogin) => {
-    if (successLogin) {
-      setTimeout(() => {
-        router.push('/')
-      }, 1125)
-    }
-  })
+  // console.log(values)
 }
+
 function onInvalidSubmit() {
   const submitBtn = document.querySelector('.submit-btn')
   submitBtn?.classList.add('invalid')
@@ -37,21 +44,26 @@ function onInvalidSubmit() {
     submitBtn?.classList.remove('invalid')
   }, 1000)
 }
+
 //* Schema validation
 const schema = Yup.object().shape({
   email: Yup.string().email().required(),
+  name: Yup.string().required(),
   password: Yup.string().min(6).required(),
+  confirm_password: Yup.string()
+    .required()
+    .oneOf([Yup.ref('password')], 'Passwords do not match'),
 })
 </script>
 
 <template>
-  <div class="content h-full w-full flex flex-col justify-center">
-    <h1 class="text-white text-center my-5 font-bold text-3xl">
-      Log In
+  <div class="auth">
+    <h1 class="auth__header">
+      Sign Up
     </h1>
     <Form
-      name="login" class="flex flex-col w-4/5 mx-auto items-center h-full justify-around"
-      :validation-schema="schema" @submit="onSubmit" @invalid-submit="onInvalidSubmit"
+      class="auth__form" :validation-schema="schema" @submit="onSubmit"
+      @invalid-submit="onInvalidSubmit"
     >
       <CustomInput
         v-for="input in inputFormData" :key="input.placeholder" :placeholder="input.placeholder"
@@ -59,17 +71,15 @@ const schema = Yup.object().shape({
       />
 
       <button
-        class="submit-btn text-black my-4 bg-white opacity-[30%] hover:opacity-[80%] duration-300 font-medium py-3 rounded text-3xl px-16"
+        class="submit-btn"
         type="submit"
       >
-        Login
+        SignUp
       </button>
     </Form>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.submit-btn:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.8) !important;
-}
+
 </style>

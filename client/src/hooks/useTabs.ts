@@ -1,15 +1,13 @@
 import type { VNodeRef } from '@vue/runtime-dom'
-import type TabRoot from '~/components/__reusable__/Tab/TabRoot.vue'
+import type TabRoot from '~/organisms/TabRoot.vue'
 
-const useTabs = () => {
+const useTabs = (props: any) => {
   //* Select part
   const selected = ref(0)
   const select = (index: number) => {
     selected.value = index
   }
-  const isSelected = (index: number) => {
-    return index === selected.value
-  }
+  const isSelected = (index: number) => index === selected.value
 
   //* Initialization elements
   const rootRef = ref<InstanceType<typeof TabRoot> | null>()
@@ -31,7 +29,14 @@ const useTabs = () => {
     })
   })
 
-  return { getRootRef, isSelected, getToggleElement, selected }
+  const getTabNames = computed(() => props.tabData.map((tabChunkData: { tabName: string }) => tabChunkData.tabName))
+
+  const getCurrentTabName = computed(() => props.tabData[selected.value].componentName)
+
+  const getCurrentClasses = (idx: number) =>
+    (isSelected(idx) && props.activeToggleClasses) || (!isSelected(idx) && props.passiveToggleClasses)
+
+  return { getRootRef, getTabNames, getCurrentTabName, getCurrentClasses, isSelected, getToggleElement, selected }
 }
 
 export { useTabs }

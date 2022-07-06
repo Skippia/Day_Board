@@ -12,6 +12,25 @@ import './assets/styles/ui.scss'
 
 const app = createApp(App)
 
+const components = [
+  {
+    name: 'SignUp', path: 'organisms/SignUp',
+  },
+  {
+    name: 'TabRoot', path: 'organisms/TabRoot',
+  },
+  {
+    name: 'LogIn', path: 'organisms/LogIn',
+  },
+]
+
+// ! Dynamic imports for Tab component
+components.forEach((component) => {
+  app.component(component.name, defineAsyncComponent(() =>
+    import(/* @vite-ignore */`./${component.path}.vue`),
+  ))
+})
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
@@ -22,3 +41,4 @@ app
   .use(createPinia())
 
 app.mount('#app')
+

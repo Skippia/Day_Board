@@ -18,16 +18,8 @@
   white-space: pre;
 }
 
-.invalid {
-  background-color: #9e2a2b;
-  color: white;
-}
 
-.submit-btn.invalid {
-  animation: shake 0.5s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
+
 
 @keyframes shake {
   0% {
@@ -80,12 +72,12 @@
 }
 
 .help-message {
-  color: #2ec4b6;
+  color: #8ac926;
   font-weight: 400;
 }
 
 .error-message {
-  color: #ee9b00;
+  color: #ffd60a;
   font-weight: 400;
 }
 
@@ -112,11 +104,11 @@ input:focus {
 .notification {
   position: absolute;
   left: 50%;
-  top: 2%;
+  top: 0.1%;
   text-align: center;
   font-size: 27px;
-  padding: 20px;
-  width: 30%;
+  padding: 10px;
+  width: 60%;
   transform: translateX(-50%);
   border-radius: 10px;
   border: 2px solid rgba(231, 250, 26, 0.8);
@@ -133,6 +125,58 @@ input:focus {
 
 .tab-toggle-active {
   background-color: rgba(50, 2, 31, .6);
-
 }
 
+.scroll-visible {
+  overflow: auto;
+}
+
+.scroll-invisible {
+  overflow: hidden;
+}
+
+.submit-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(16, 230, 33, 0.6);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.submit-btn {
+  @apply text-black my-4 bg-white opacity-[30%] hover:opacity-[80%] duration-300 font-medium py-3 rounded text-3xl px-16;
+}
+.invalid {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+  background-color: #9e2a2b!important;
+  color: white;
+}
+
+.auth__header {
+  @apply text-white text-center my-2 font-bold text-3xl;
+}
+
+.auth {
+  @apply h-full w-full flex flex-col justify-center;
+}
+.auth__form {
+  @apply flex flex-col w-4/5 mx-auto items-center h-full justify-evenly;
+}

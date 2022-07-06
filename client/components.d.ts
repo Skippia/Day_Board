@@ -7,18 +7,21 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AuthLayout: typeof import('./src/layouts/AuthLayout.vue')['default']
-    CrossTable: typeof import('./src/components/__reusable__/CrossTable/CrossTable.vue')['default']
-    CrossTableTD: typeof import('./src/components/__reusable__/CrossTable/_components/CrossTableTD.vue')['default']
-    CrossTableTH: typeof import('./src/components/__reusable__/CrossTable/_components/CrossTableTH.vue')['default']
-    CustomInput: typeof import('./src/components/__reusable__/CustomInput/CustomInput.vue')['default']
-    LogIn: typeof import('./src/components/LogIn/LogIn.vue')['default']
+    '[...all]': typeof import('./src/pages/[...all].vue')['default']
+    Auth: typeof import('./src/pages/auth/index.vue')['default']
+    AuthLayout: typeof import('./src/templates/AuthLayout.vue')['default']
+    CrossTable: typeof import('./src/templates/CrossTable.vue')['default']
+    CrossTableTD: typeof import('./src/atoms/CrossTable/CrossTableTD.vue')['default']
+    CrossTableTH: typeof import('./src/atoms/CrossTable/CrossTableTH.vue')['default']
+    CustomInput: typeof import('./src/molecules/CustomInput.vue')['default']
+    LabelInput: typeof import('./src/atoms/LabelInput.vue')['default']
+    LogIn: typeof import('./src/organisms/LogIn.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SignUp: typeof import('./src/components/SignUp/SignUp.vue')['default']
-    StatsPanel: typeof import('./src/components/StatsPanel/StatsPanel.vue')['default']
-    Tab: typeof import('./src/components/__reusable__/Tab/Tab.vue')['default']
-    TabRoot: typeof import('./src/components/__reusable__/Tab/TabRoot.vue')['default']
+    SignUp: typeof import('./src/organisms/SignUp.vue')['default']
+    StatsPanel: typeof import('./src/organisms/StatsPanel.vue')['default']
+    Tab: typeof import('./src/templates/Tab.vue')['default']
+    Undefined: typeof import('./src/pages/index.vue')['default']
   }
 
 }
