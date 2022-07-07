@@ -161,12 +161,13 @@ input:focus {
 }
 
 .submit-btn {
-  @apply text-black my-4 bg-white opacity-[30%] hover:opacity-[80%] duration-300 font-medium py-3 rounded text-3xl px-16;
+  @apply text-black my-4 bg-white opacity-[30%] hover: opacity-[80%] duration-300 font-medium py-3 rounded text-3xl px-16;
 }
+
 .invalid {
   animation: shake 0.5s;
   animation-iteration-count: infinite;
-  background-color: #9e2a2b!important;
+  background-color: #9e2a2b !important;
   color: white;
 }
 
@@ -177,6 +178,11 @@ input:focus {
 .auth {
   @apply h-full w-full flex flex-col justify-center;
 }
+
 .auth__form {
   @apply flex flex-col w-4/5 mx-auto items-center h-full justify-evenly;
+}
+
+.outline-active-day {
+  @apply outline outline-2 outline-sky-500
 }
