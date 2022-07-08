@@ -47,6 +47,7 @@ export default defineConfig({
       dirs: [
         './src/stores',
         './src/utils',
+        './src/services',
         './src/hooks',
       ],
       vueTemplate: true,

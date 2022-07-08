@@ -25,7 +25,7 @@ function onSubmit(values: object) {
   storeAuth.login({ email: values?.email, password: values?.password }).then((successLogin) => {
     if (successLogin) {
       setTimeout(() => {
-        router.push('/')
+        router.push('/panel')
       }, 1125)
     }
   })

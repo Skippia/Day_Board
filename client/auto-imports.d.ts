@@ -12,7 +12,8 @@ declare global {
   const FireAction: typeof import('./src/utils/FireAction')['FireAction']
   const HoverAction: typeof import('./src/utils/HoverAction')['HoverAction']
   const Tooltip: typeof import('./src/utils/Tooltip')['Tooltip']
-  const apiDeskDay: typeof import('./src/utils/apiDeskDayConfig')['apiDeskDay']
+  const apiService: typeof import('./src/services/ApiService')['apiService']
+  const axiosDayApiInstance: typeof import('./src/utils/apiDeskDayConfig')['axiosDayApiInstance']
   const baseApiURL: typeof import('./src/utils/constants')['baseApiURL']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
@@ -43,6 +44,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const prettyDate: typeof import('./src/utils/prettyDate')['prettyDate']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -70,6 +72,7 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
   const useStoreAuth: typeof import('./src/stores/useStoreAuth')['useStoreAuth']
+  const useStoreDay: typeof import('./src/stores/StoreDay')['useStoreDay']
   const useStoreUser: typeof import('./src/stores/useStoreUser')['useStoreUser']
   const useTableFireAction: typeof import('./src/hooks/useTableFireAction')['useTableFireAction']
   const useTableHoverAction: typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']
@@ -94,7 +97,8 @@ declare module '@vue/runtime-core' {
     readonly FireAction: UnwrapRef<typeof import('./src/utils/FireAction')['FireAction']>
     readonly HoverAction: UnwrapRef<typeof import('./src/utils/HoverAction')['HoverAction']>
     readonly Tooltip: UnwrapRef<typeof import('./src/utils/Tooltip')['Tooltip']>
-    readonly apiDeskDay: UnwrapRef<typeof import('./src/utils/apiDeskDayConfig')['apiDeskDay']>
+    readonly apiService: UnwrapRef<typeof import('./src/services/ApiService')['apiService']>
+    readonly axiosDayApiInstance: UnwrapRef<typeof import('./src/utils/apiDeskDayConfig')['axiosDayApiInstance']>
     readonly baseApiURL: UnwrapRef<typeof import('./src/utils/constants')['baseApiURL']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -125,6 +129,7 @@ declare module '@vue/runtime-core' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly prettyDate: UnwrapRef<typeof import('./src/utils/prettyDate')['prettyDate']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -152,6 +157,7 @@ declare module '@vue/runtime-core' {
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useStoreAuth: UnwrapRef<typeof import('./src/stores/useStoreAuth')['useStoreAuth']>
+    readonly useStoreDay: UnwrapRef<typeof import('./src/stores/StoreDay')['useStoreDay']>
     readonly useStoreUser: UnwrapRef<typeof import('./src/stores/useStoreUser')['useStoreUser']>
     readonly useTableFireAction: UnwrapRef<typeof import('./src/hooks/useTableFireAction')['useTableFireAction']>
     readonly useTableHoverAction: UnwrapRef<typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']>
