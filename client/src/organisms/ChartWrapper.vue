@@ -3,7 +3,7 @@ const storeDay = useStoreDay()
 
 const convertDate = (rawDate: string) => +new Date(rawDate)
 //* ? Loading current page data
-storeDay.loadAllPageData()
+// storeDay.loadAllPageData()
 const getDays = computed(() => storeDay.allPageData)
 const getFilteredDaysByDate = computed(() => storeDay.getFilteredDaysByDate)
 

@@ -1,4 +1,6 @@
-const useChooseDatePicker = () => {
+import type { Ref } from 'vue'
+
+const useChooseDatePicker = (renderEl: Ref<HTMLElement | undefined>) => {
   // ? Constants
   const daysWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   const months = ['January', 'February', 'March', 'April', 'May',
@@ -6,35 +8,35 @@ const useChooseDatePicker = () => {
   const classesForChosenEl = ['outline-active-day']
 
   // ? Initialization
-  const chosenDay = ref<number>()
+  const chosenDay = ref(new Date().getDate())
   const currentMonth = ref(new Date().getMonth())
   const currentYear = ref(new Date().getFullYear())
   const chosenMonth = ref(new Date().getMonth())
   const chosenYear = ref(new Date().getFullYear())
+  const isRenderedComponent = ref(true)
+  const chosenDayEl = ref<HTMLElement | undefined>()
 
-  const chosenDayEl = computed(() => findDayElByChosenDay(chosenDay.value))
-  const isExactlyMonth = computed(() =>
-    chosenMonth.value === currentMonth.value && currentYear.value === chosenYear.value)
+  const isChosenMonth = computed(() => chosenMonth.value === currentMonth.value && currentYear.value === chosenYear.value)
+  const dayIsChosen = (el: HTMLElement) => classesForChosenEl.every(currentClass => el.classList.contains(currentClass))
+  const getAmountCurrentDays = computed(() => new Date(currentYear.value, currentMonth.value + 1, 0).getDate())
 
-  const elIsActive = (el: HTMLElement) =>
-    classesForChosenEl.every(currentClass => el.classList.contains(currentClass))
-
+  function chooseDayEl(chosenDay: number) {
+    const target = document.querySelector(`[data-day="${chosenDay}"]`)
+    if (target)
+      chosenDayEl.value = target as HTMLElement
+  }
   function removeChosenDayClasses(target: Element) {
     classesForChosenEl.forEach(el => target.classList.remove(el))
   }
   function addChosenDayClasses(target: Element) {
     classesForChosenEl.forEach(el => target.classList.add(el))
   }
-  function findDayElByChosenDay(chosenDay: number | undefined) {
-    if (chosenDay)
-      return document.querySelector(`[data-day="${chosenDay}"]`)
-  }
   function paintChosenDay() {
     if (chosenDayEl.value)
       addChosenDayClasses(chosenDayEl.value)
   }
   function paintOffChosenDay() {
-    if (chosenDayEl.value && chosenDayEl.value.classList.contains('outline-active-day'))
+    if (chosenDayEl.value && dayIsChosen(chosenDayEl.value))
       removeChosenDayClasses(chosenDayEl.value)
   }
   function updateDateAboutChosenDay(day: number) {
@@ -42,36 +44,7 @@ const useChooseDatePicker = () => {
     chosenMonth.value = currentMonth.value
     chosenYear.value = currentYear.value
   }
-
-  onMounted(() => {
-    // Initial painting current day
-    chosenDay.value = new Date().getDate()
-    paintChosenDay()
-  })
-
-  watch(chosenDay, () => {
-    paintChosenDay()
-  })
-
-  onUpdated(() => {
-    if (isExactlyMonth.value)
-      paintChosenDay()
-    else
-      paintOffChosenDay()
-  })
-  const getAmountCurrentDays = $computed(() => new Date(currentYear.value, currentMonth.value + 1, 0).getDate())
-
-  const changeDay = (e: Event) => {
-    if (elIsActive(e.target as HTMLElement) && isExactlyMonth.value)
-      return
-
-    // 1. Remove paint from ex day
-    paintOffChosenDay()
-    // 2. Set new day
-    updateDateAboutChosenDay(Number((e.target as HTMLElement).dataset.day))
-  }
-
-  const switchPreviousMonth = () => {
+  function switchPreviousMonth() {
     currentMonth.value--
 
     if (currentMonth.value < 0) {
@@ -79,8 +52,7 @@ const useChooseDatePicker = () => {
       currentYear.value--
     }
   }
-
-  const switchNextMonth = () => {
+  function switchNextMonth() {
     currentMonth.value++
 
     if (currentMonth.value > 11) {
@@ -89,7 +61,36 @@ const useChooseDatePicker = () => {
     }
   }
 
-  return { switchPreviousMonth, switchNextMonth, currentMonth, currentYear, changeDay, getAmountCurrentDays, daysWeek, months }
+  watch(renderEl, (renderDone) => {
+    //* If we back to month where we choose day
+    if (renderDone && isChosenMonth.value) {
+      //* Find chosen day
+      chooseDayEl(chosenDay.value!)
+      //* Draw chosen day
+      paintChosenDay()
+    }
+  })
+
+  onUpdated(() => {
+    //* Rerender component manually
+    isRenderedComponent.value = false
+    nextTick(() => {
+      isRenderedComponent.value = true
+    })
+  })
+
+  const changeDay = (e: Event) => {
+    // 1. Remove paint from ex day
+    paintOffChosenDay()
+    // 2. Set new date
+    updateDateAboutChosenDay(Number((e.target as HTMLElement).dataset.day))
+    // 3. Update chosen day
+    chooseDayEl(chosenDay.value!)
+    // 4. Paint new day
+    paintChosenDay()
+  }
+
+  return { isRenderedComponent, switchPreviousMonth, switchNextMonth, currentMonth, currentYear, changeDay, getAmountCurrentDays, daysWeek, months }
 }
 
 export { useChooseDatePicker }
