@@ -1,19 +1,22 @@
 import { defineStore } from 'pinia'
-import type { TActivator } from '~/hooks/useTrackDatePicker'
+import type { TFilter } from '~/hooks/useTrackDatePicker'
 
 export const useStoreDayFilter = defineStore({
   id: 'day-filter',
   state: () => ({
-    toggleActivators: [] as TActivator[],
-    multiChosenDay: Function,
-    multiCleanDay: Function,
+    toggleFilters: [] as TFilter[],
+    filterDate: [currentDate],
   }),
   getters: {
-    getToggleActivators: state => state.toggleActivators,
+    getToggleFilters: state => state.toggleFilters,
+    getFilterDate: state => state.filterDate,
   },
   actions: {
-    updateToggleActivators(toggleActivators: TActivator[]) {
-      this.toggleActivators = toggleActivators
+    updateToggleFilters(toggleFilters: TFilter[]) {
+      this.toggleFilters = toggleFilters
+    },
+    updateFilterDate(filterDate: typeof currentDate[]) {
+      this.filterDate = filterDate
     },
   },
 })

@@ -1,22 +1,21 @@
 <script setup lang='ts'>
-const renderEl = ref<HTMLElement>()
+import { daysWeek, months } from '~/utils/constants'
+const renderedElement = ref<HTMLElement>()
 const currentMode = ref('single')
 const storeDayFilter = useStoreDayFilter()
 
-//* Flag whether the datepicker is loaded, current date (datapicker) and helpers for datepicker
+//* Flag whether the datepicker is loaded and helpers for datepicker
 const {
-  isRenderedComponent, switchPreviousMonth, switchNextMonth,
-  currentDate, getAmountCurrentDays, daysWeek, months,
+  isRenderedComponent, switchPreviousMonth, switchNextMonth, getAmountDaysInCurrentMonth,
 }
   = useDatePicker()
 
 //* Setting custom listener for datepicker (primary filter)
 const {
-  toggleActivator: primaryEdge,
+  toggleFilter: primaryEdge,
   data: primaryEdgeData,
 } = useDateClickListener({
   activeClasses: ['bg-emerald-500/40'],
-  currentDate,
   condition: (e: MouseEvent) => {
     return !e.ctrlKey
   },
@@ -25,11 +24,10 @@ const {
 
 //* Setting custom listener for datepicker (additional filter)
 const {
-  toggleActivator: additionalEdge,
+  toggleFilter: additionalEdge,
   data: additionalEdgeData,
 } = useDateClickListener({
   activeClasses: ['bg-pink-500/40'],
-  currentDate,
   condition: (e: MouseEvent) => {
     return e.ctrlKey
   },
@@ -37,30 +35,36 @@ const {
 })
 
 //* Single mode switch on
-storeDayFilter.updateToggleActivators([primaryEdge])
+storeDayFilter.updateToggleFilters([primaryEdge])
 
 //* Configuring change day event (@click) depending on filters
 const { changeDay }
   = useTrackDatePicker({
-    renderEl,
-    currentDate,
+    renderedElement,
   })
 
 watch(currentMode, (newMode) => {
   //* Primary filter is working always (by default)
   if (newMode === 'single') {
     //* Invoke appropriate before remove filter function
-    storeDayFilter.getToggleActivators[1].beforeRemove()
+    storeDayFilter.getToggleFilters[1].beforeRemove()
     //* Remove additional filter
-    storeDayFilter.updateToggleActivators([primaryEdge])
+    storeDayFilter.updateToggleFilters([primaryEdge])
   }
 
   else if (newMode === 'multi') {
     //* Adding additional filter
-    storeDayFilter.updateToggleActivators([primaryEdge, additionalEdge])
+    storeDayFilter.updateToggleFilters([primaryEdge, additionalEdge])
     //* Init additional filter
-    storeDayFilter.getToggleActivators[1].init()
+    storeDayFilter.getToggleFilters[1].init()
   }
+})
+
+watch([currentMode, primaryEdgeData, additionalEdgeData], ([currentMode, primaryEdgeData, additionalEdgeData]) => {
+  if (currentMode === 'single')
+    storeDayFilter.updateFilterDate([primaryEdgeData])
+  else if (currentMode === 'multi')
+    storeDayFilter.updateFilterDate([primaryEdgeData, additionalEdgeData])
 })
 </script>
 
@@ -82,8 +86,8 @@ watch(currentMode, (newMode) => {
           </p>
         </div>
         <Transition name="list" appear mode="out-in">
-          <div v-if="isRenderedComponent" ref="renderEl" class="data-row">
-            <p v-for="day in getAmountCurrentDays" :key="day" class="data-el" :data-day="day" @click="changeDay">
+          <div v-if="isRenderedComponent" ref="renderedElement" class="data-row">
+            <p v-for="day in getAmountDaysInCurrentMonth" :key="day" class="data-el" :data-day="day" @click="changeDay">
               {{ day }}
             </p>
           </div>

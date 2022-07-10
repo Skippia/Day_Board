@@ -1,8 +1,7 @@
 const useDateClickListener = (
-  { activeClasses, currentDate, condition, primaryFilter }:
+  { activeClasses, condition, primaryFilter }:
   {
     activeClasses: string[]
-    currentDate: { day: number; month: number; year: number }
     condition: (e: MouseEvent) => boolean
     primaryFilter: boolean
   }) => {
@@ -17,14 +16,10 @@ const useDateClickListener = (
   const chosenDayEl = ref<HTMLElement>()
 
   //* Remove style from chosen day
-  function disactivate(target: HTMLElement) {
-    activeClasses.forEach(el => target.classList.remove(el))
-  }
+  const disactivate = (target: HTMLElement) => activeClasses.forEach(el => target.classList.remove(el))
 
   //* Apply style for chosen day
-  function activate(target: HTMLElement) {
-    activeClasses.forEach(el => target.classList.add(el))
-  }
+  const activate = (target: HTMLElement) => activeClasses.forEach(el => target.classList.add(el))
 
   function saveDateAboutChosenDay(day: number) {
     chosenDate.day = day
@@ -43,13 +38,10 @@ const useDateClickListener = (
     initDayElement(chosenDate.day)
   })
 
-  function compareDate(currentDate: { month: number; year: number }, chosenDate: { day: number; month: number; year: number }) {
-    return currentDate.month === chosenDate.month && currentDate.year === chosenDate.year
-  }
   const restoreChosenDayFabric = (chosenDate: { day: number; month: number; year: number }) => (
     currentDate: { month: number; year: number }) => {
     // It's our month
-    if (compareDate(currentDate, chosenDate)) {
+    if (compareDateByMonthAndYear(currentDate, chosenDate)) {
       // Init day
       initDayElement(chosenDate.day)
       // Paint this day
@@ -78,7 +70,7 @@ const useDateClickListener = (
   const init = initFabric(primaryFilter)
   const beforeRemove = beforeRemoveFabric(primaryFilter)
 
-  const toggleActivator = {
+  const toggleFilter = {
     run(e: MouseEvent) {
       // 1. Remove paint from ex day
       disactivate(chosenDayEl.value as HTMLElement)
@@ -98,7 +90,7 @@ const useDateClickListener = (
     beforeRemove,
   }
 
-  return { toggleActivator, data: chosenDate }
+  return { toggleFilter, data: chosenDate }
 }
 
 export { useDateClickListener }

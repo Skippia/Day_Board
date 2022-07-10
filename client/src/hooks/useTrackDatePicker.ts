@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-interface TActivator {
+interface TFilter {
   run: (e: MouseEvent) => void
   condition: (e: MouseEvent) => boolean
   restoreChosenDay: (currentDate: { month: number; year: number }) => void
@@ -10,28 +10,27 @@ interface TActivator {
 const storeDayFilter = useStoreDayFilter()
 
 const useTrackDatePicker
-  = ({ renderEl, currentDate }: {
-    renderEl: Ref<HTMLElement | undefined>
-    currentDate: { month: number; year: number }
+  = ({ renderedElement }: {
+    renderedElement: Ref<HTMLElement | undefined>
   }) => {
-    watch(renderEl, (renderStatus) => {
+    watch(renderedElement, (renderStatus) => {
       //* If element was rerendered
       if (renderStatus) {
         //* Check if we back to month where we choose day
-        const toggleActivators = storeDayFilter.getToggleActivators
-        toggleActivators.forEach(toggleActivator => toggleActivator.restoreChosenDay(currentDate))
+        const toggleFilters = storeDayFilter.getToggleFilters
+        toggleFilters.forEach(toggleFilter => toggleFilter.restoreChosenDay(currentDate))
       }
     })
 
     const changeDay = (e: MouseEvent) => {
-      const toggleActivators = storeDayFilter.getToggleActivators
-      toggleActivators.forEach((toggleActivator) => {
-        if (toggleActivator.condition(e))
-          toggleActivator.run(e)
+      const toggleFilters = storeDayFilter.getToggleFilters
+      toggleFilters.forEach((toggleFilter) => {
+        if (toggleFilter.condition(e))
+          toggleFilter.run(e)
       })
     }
 
     return { changeDay }
   }
 
-export { useTrackDatePicker, TActivator }
+export { useTrackDatePicker, TFilter }
