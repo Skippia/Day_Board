@@ -1,7 +1,5 @@
 import type { AxiosInstance } from 'axios'
-import { axiosDayApiInstance } from '~/utils/apiDeskDayConfig'
-
-type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
+import type { TNetworkMethod } from '~/types/types'
 
 const useFetch = ({ url, method, apiConfig, additionalReqOptions }:
 { url: string; method: TNetworkMethod; apiConfig: AxiosInstance; additionalReqOptions?: object }) => {

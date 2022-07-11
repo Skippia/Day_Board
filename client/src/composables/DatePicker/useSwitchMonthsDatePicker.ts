@@ -1,4 +1,4 @@
-const useDatePicker = () => {
+const useSwitchMonthsDatePicker = () => {
   const isRenderedComponent = ref(true)
 
   function switchPreviousMonth() {
@@ -34,4 +34,4 @@ const useDatePicker = () => {
   return { isRenderedComponent, switchPreviousMonth, switchNextMonth, currentDate, getAmountDaysInCurrentMonth }
 }
 
-export { useDatePicker }
+export { useSwitchMonthsDatePicker }

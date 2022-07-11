@@ -6,7 +6,8 @@ const props = defineProps({
 })
 
 const overflowControl = ref<HTMLElement>()
-useDelayRenderFix(overflowControl)
+//* It's time animation for fade transition
+useDelayRenderFix(overflowControl, 600)
 
 const { getTabNames, getCurrentTabName, getRootRef, getCurrentClasses, getToggleElement } = useTabs(props)
 </script>

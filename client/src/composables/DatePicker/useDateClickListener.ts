@@ -41,7 +41,7 @@ const useDateClickListener = (
   const restoreChosenDayFabric = (chosenDate: { day: number; month: number; year: number }) => (
     currentDate: { month: number; year: number }) => {
     // It's our month
-    if (compareDateByMonthAndYear(currentDate, chosenDate)) {
+    if (compareDateMY(currentDate, chosenDate)) {
       // Init day
       initDayElement(chosenDate.day)
       // Paint this day

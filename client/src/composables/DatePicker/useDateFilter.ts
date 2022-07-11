@@ -1,4 +1,4 @@
-import type { IDate } from '~/types/IDate'
+import type { IDate } from '~/types/types'
 
 const useDateFilter = () => {
   const storeDay = useStoreDay()

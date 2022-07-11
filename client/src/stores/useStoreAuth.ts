@@ -30,8 +30,8 @@ export const useStoreAuth = defineStore('auth', {
       }
       Tooltip.run({
         error: !!error,
-        message_success: data?.message,
-        message_fail: error,
+        messageSuccess: data?.message,
+        messageFail: error,
       })
 
       return !error

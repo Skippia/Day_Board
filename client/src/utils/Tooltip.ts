@@ -1,17 +1,17 @@
 class TooltipConstructor {
   run({
     error,
-    message_success,
-    message_fail,
+    messageSuccess,
+    messageFail,
   }: {
     error: boolean
-    message_success: string
-    message_fail: string
+    messageSuccess: string
+    messageFail: string
   }): void {
     if (!error)
-      return this.draw({ status: 'success', message: message_success })
+      return this.draw({ status: 'success', message: messageSuccess })
 
-    this.draw({ status: 'fail', message: message_fail })
+    this.draw({ status: 'fail', message: messageFail })
   }
 
   draw({ status, message }: { status: string; message: string }) {

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { TFilter } from '~/hooks/useTrackDatePicker'
+import type { TFilter } from '~/types/types'
 
 export const useStoreDayFilter = defineStore({
   id: 'day-filter',

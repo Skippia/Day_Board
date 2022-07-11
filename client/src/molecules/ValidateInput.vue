@@ -43,7 +43,7 @@ const {
 
 <template>
   <div class="flex flex-col my-1">
-    <LabelInput v-if="label" :label="label" :name="name" />
+    <VLabelInput v-if="label" :label="label" :name="name" />
     <input
       :id="name" :class="{ 'error-focus': !!errorMessage, 'right-focus': !errorMessage }" :name="name" :type="type"
       :value="inputValue" :placeholder="placeholder" class="custom-input custom-input--shadow" @input="handleChange"

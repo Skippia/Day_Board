@@ -1,5 +1,4 @@
 import type { VNodeRef } from '@vue/runtime-dom'
-import type TabRoot from '~/organisms/TabRoot.vue'
 
 const useTabs = (props: any) => {
   //* Select part
@@ -10,22 +9,24 @@ const useTabs = (props: any) => {
   const isSelected = (index: number) => index === selected.value
 
   //* Initialization elements
-  const rootRef = ref<InstanceType<typeof TabRoot> | null>()
+  const rootRef = ref<HTMLElement>()
   const toggleElements = ref<HTMLElement[]>([])
-  const getRootRef = (el: InstanceType<typeof TabRoot>) => {
-    rootRef.value = el?.$el
+  const getRootRef = (el: HTMLElement) => {
+    rootRef.value = el
+    // ! Added for TS compatibility, but not needed
     return rootRef as VNodeRef
   }
 
   const getToggleElement = (idx: number) => (el: HTMLElement) => {
     toggleElements.value[idx] = el
+    // ! Added for TS compatibility, but not needed
     return shallowRef(el)
   }
 
-  //* Setting up listeners
+  //* Setting up listeners on every tab
   onMounted(() => {
     toggleElements.value.forEach((el: HTMLElement, idx: number) => {
-      el?.addEventListener('click', () => select(idx))
+      el.addEventListener('click', () => select(idx))
     })
   })
 
