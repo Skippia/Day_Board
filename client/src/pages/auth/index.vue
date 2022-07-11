@@ -2,18 +2,18 @@
 const tabData = [
   {
     tabName: 'Log In',
-    componentName: 'LogIn',
+    componentName: 'AuthLogIn',
   },
   {
     tabName: 'Sign Up',
-    componentName: 'SignUp',
+    componentName: 'AuthSignUp',
   },
 ]
 </script>
 
 <template>
   <AuthLayout>
-    <Tab
+    <VTab
       :tab-data="tabData" :active-toggle-classes="['tab-toggle-active']"
       :passive-toggle-classes="['hover:bg-[rgba(22,22,22,.3)] cursor-pointer duration-300 hover:scale-90']"
     />

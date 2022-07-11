@@ -7,9 +7,21 @@ const transformObject = (target) =>
     return [...acc, { [cur]: target[cur] }]
   }, [])
 
-const getAll = ({ model, pathId, isAdmin = true }) =>
+const getAll = ({ model, pathId, filterConfig, isAdmin = true }) =>
   catchAsync(async (req, res, next) => {
     let findOptions = {}
+    console.log('query', req.query);
+
+    if (filterConfig) {
+      filterConfig.forEach(curFilter => {
+        const args = curFilter.paramsFilter.reduce((acc, cur) =>
+          ({ ...acc, [cur.name]: req[cur.type][cur.field] }), {})
+
+        args.searchParam = curFilter.searchParam
+
+        findOptions = { ...findOptions, ...curFilter.filterFn(args) }
+      })
+    }
 
     if (pathId) {
       const { field, type } = pathId
@@ -20,6 +32,9 @@ const getAll = ({ model, pathId, isAdmin = true }) =>
       const userId = res.locals?.decoded?.userId
       findOptions = { ...findOptions, userId }
     }
+
+    console.log('findOptions', findOptions);
+    
 
     const data = await model.find(findOptions)
 
@@ -100,10 +115,13 @@ const createOne = ({ model, pathMergeData, message, isAdmin = true }) =>
     const newData = req.body
     let resultData = { ...newData }
 
+    console.log('lalal')
     if (pathMergeData) {
       const { type, field } = pathMergeData
       const mergeData = req[type][field]
+      console.log('date: ', mergeData)
       resultData = { ...resultData, [field]: mergeData }
+      console.log('result data: ', resultData)
     }
 
     if (!isAdmin) {

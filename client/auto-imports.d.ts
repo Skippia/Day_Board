@@ -8,15 +8,20 @@ declare global {
   const $ref: typeof import('vue/macros')['$ref']
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
+  const ClickAction: typeof import('./src/utils/FireAction')['ClickAction']
   const EffectScope: typeof import('vue')['EffectScope']
-  const FireAction: typeof import('./src/utils/FireAction')['FireAction']
   const HoverAction: typeof import('./src/utils/HoverAction')['HoverAction']
   const Tooltip: typeof import('./src/utils/Tooltip')['Tooltip']
-  const apiDeskDay: typeof import('./src/utils/apiDeskDayConfig')['apiDeskDay']
+  const apiService: typeof import('./src/services/ApiService')['apiService']
+  const axiosDayApiInstance: typeof import('./src/utils/apiConfig')['axiosDayApiInstance']
   const baseApiURL: typeof import('./src/utils/constants')['baseApiURL']
+  const compareDateMY: typeof import('./src/utils/date')['compareDateMY']
   const computed: typeof import('vue')['computed']
+  const convertDate: typeof import('./src/utils/date')['convertDate']
   const createApp: typeof import('vue')['createApp']
+  const currentDate: typeof import('./src/utils/date')['currentDate']
   const customRef: typeof import('vue')['customRef']
+  const daysWeek: typeof import('./src/utils/constants')['daysWeek']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const effectScope: typeof import('vue')['effectScope']
@@ -29,6 +34,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
+  const months: typeof import('./src/utils/constants')['months']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -43,6 +49,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const prettyDate: typeof import('./src/utils/date')['prettyDate']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -55,25 +62,33 @@ declare global {
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const triggerRef: typeof import('vue')['triggerRef']
-  const type ICoordinates: typeof import('./src/utils/HoverAction')['type ICoordinates']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useChooseDatePicker: typeof import('./src/hooks/useChooseDatePicker')['useChooseDatePicker']
-  const useCounterStore: typeof import('./src/stores/useStoreAdmin')['useCounterStore']
+  const useAuthLogIn: typeof import('./src/composables/Auth/useAuthLogIn')['useAuthLogIn']
+  const useAuthSignUp: typeof import('./src/composables/Auth/useAuthSignUp')['useAuthSignUp']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
-  const useDelayRenderFix: typeof import('./src/hooks/useDelayRenderFix')['useDelayRenderFix']
-  const useGenerateColor: typeof import('./src/hooks/useGenerateColor')['useGenerateColor']
-  const useInitStartValues: typeof import('./src/hooks/useInitStartValues')['useInitStartValues']
-  const usePaintTableCell: typeof import('./src/hooks/usePaintTableCell')['usePaintTableCell']
+  const useDateClickListener: typeof import('./src/composables/DatePicker/useDateClickListener')['useDateClickListener']
+  const useDateFilter: typeof import('./src/composables/DatePicker/useDateFilter')['useDateFilter']
+  const useDelayRenderFix: typeof import('./src/composables/V/useDelayRenderFix')['useDelayRenderFix']
+  const useGenerateColor: typeof import('./src/composables/V/useGenerateColor')['useGenerateColor']
+  const useInitCrossTableValues: typeof import('./src/composables/CrossTable/useInitCrossTableValues')['useInitCrossTableValues']
+  const usePaintTableCell: typeof import('./src/composables/CrossTable/usePaintTableCell')['usePaintTableCell']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
   const useStoreAuth: typeof import('./src/stores/useStoreAuth')['useStoreAuth']
+  const useStoreDay: typeof import('./src/stores/useStoreDay')['useStoreDay']
+  const useStoreDayFilter: typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']
   const useStoreUser: typeof import('./src/stores/useStoreUser')['useStoreUser']
-  const useTableFireAction: typeof import('./src/hooks/useTableFireAction')['useTableFireAction']
-  const useTableHoverAction: typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']
-  const useTabs: typeof import('./src/hooks/useTabs')['useTabs']
+  const useSwitchMonthsDatePicker: typeof import('./src/composables/DatePicker/useSwitchMonthsDatePicker')['useSwitchMonthsDatePicker']
+  const useTableClickAction: typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']
+  const useTableHoverAction: typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']
+  const useTabs: typeof import('./src/composables/V/useTabs')['useTabs']
+  const useTrackDatePicker: typeof import('./src/composables/DatePicker/useTrackDatePicker')['useTrackDatePicker']
+  const utilCreateSelector: typeof import('./src/utils/reusableFunctions')['utilCreateSelector']
+  const utilGetCoordinatesFromElement: typeof import('./src/utils/reusableFunctions')['utilGetCoordinatesFromElement']
+  const utilRefreshRect: typeof import('./src/utils/reusableFunctions')['utilRefreshRect']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -90,15 +105,20 @@ declare module '@vue/runtime-core' {
     readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
+    readonly ClickAction: UnwrapRef<typeof import('./src/utils/FireAction')['ClickAction']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly FireAction: UnwrapRef<typeof import('./src/utils/FireAction')['FireAction']>
     readonly HoverAction: UnwrapRef<typeof import('./src/utils/HoverAction')['HoverAction']>
     readonly Tooltip: UnwrapRef<typeof import('./src/utils/Tooltip')['Tooltip']>
-    readonly apiDeskDay: UnwrapRef<typeof import('./src/utils/apiDeskDayConfig')['apiDeskDay']>
+    readonly apiService: UnwrapRef<typeof import('./src/services/ApiService')['apiService']>
+    readonly axiosDayApiInstance: UnwrapRef<typeof import('./src/utils/apiConfig')['axiosDayApiInstance']>
     readonly baseApiURL: UnwrapRef<typeof import('./src/utils/constants')['baseApiURL']>
+    readonly compareDateMY: UnwrapRef<typeof import('./src/utils/date')['compareDateMY']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
+    readonly convertDate: UnwrapRef<typeof import('./src/utils/date')['convertDate']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly currentDate: UnwrapRef<typeof import('./src/utils/date')['currentDate']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly daysWeek: UnwrapRef<typeof import('./src/utils/constants')['daysWeek']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
@@ -111,6 +131,7 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly months: UnwrapRef<typeof import('./src/utils/constants')['months']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -125,6 +146,7 @@ declare module '@vue/runtime-core' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly prettyDate: UnwrapRef<typeof import('./src/utils/date')['prettyDate']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -137,25 +159,33 @@ declare module '@vue/runtime-core' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
-    readonly type ICoordinates: UnwrapRef<typeof import('./src/utils/HoverAction')['type ICoordinates']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useChooseDatePicker: UnwrapRef<typeof import('./src/hooks/useChooseDatePicker')['useChooseDatePicker']>
-    readonly useCounterStore: UnwrapRef<typeof import('./src/stores/useStoreAdmin')['useCounterStore']>
+    readonly useAuthLogIn: UnwrapRef<typeof import('./src/composables/Auth/useAuthLogIn')['useAuthLogIn']>
+    readonly useAuthSignUp: UnwrapRef<typeof import('./src/composables/Auth/useAuthSignUp')['useAuthSignUp']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useDelayRenderFix: UnwrapRef<typeof import('./src/hooks/useDelayRenderFix')['useDelayRenderFix']>
-    readonly useGenerateColor: UnwrapRef<typeof import('./src/hooks/useGenerateColor')['useGenerateColor']>
-    readonly useInitStartValues: UnwrapRef<typeof import('./src/hooks/useInitStartValues')['useInitStartValues']>
-    readonly usePaintTableCell: UnwrapRef<typeof import('./src/hooks/usePaintTableCell')['usePaintTableCell']>
+    readonly useDateClickListener: UnwrapRef<typeof import('./src/composables/DatePicker/useDateClickListener')['useDateClickListener']>
+    readonly useDateFilter: UnwrapRef<typeof import('./src/composables/DatePicker/useDateFilter')['useDateFilter']>
+    readonly useDelayRenderFix: UnwrapRef<typeof import('./src/composables/V/useDelayRenderFix')['useDelayRenderFix']>
+    readonly useGenerateColor: UnwrapRef<typeof import('./src/composables/V/useGenerateColor')['useGenerateColor']>
+    readonly useInitCrossTableValues: UnwrapRef<typeof import('./src/composables/CrossTable/useInitCrossTableValues')['useInitCrossTableValues']>
+    readonly usePaintTableCell: UnwrapRef<typeof import('./src/composables/CrossTable/usePaintTableCell')['usePaintTableCell']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useStoreAuth: UnwrapRef<typeof import('./src/stores/useStoreAuth')['useStoreAuth']>
+    readonly useStoreDay: UnwrapRef<typeof import('./src/stores/useStoreDay')['useStoreDay']>
+    readonly useStoreDayFilter: UnwrapRef<typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']>
     readonly useStoreUser: UnwrapRef<typeof import('./src/stores/useStoreUser')['useStoreUser']>
-    readonly useTableFireAction: UnwrapRef<typeof import('./src/hooks/useTableFireAction')['useTableFireAction']>
-    readonly useTableHoverAction: UnwrapRef<typeof import('./src/hooks/useTableHoverAction')['useTableHoverAction']>
-    readonly useTabs: UnwrapRef<typeof import('./src/hooks/useTabs')['useTabs']>
+    readonly useSwitchMonthsDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/useSwitchMonthsDatePicker')['useSwitchMonthsDatePicker']>
+    readonly useTableClickAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']>
+    readonly useTableHoverAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']>
+    readonly useTabs: UnwrapRef<typeof import('./src/composables/V/useTabs')['useTabs']>
+    readonly useTrackDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/useTrackDatePicker')['useTrackDatePicker']>
+    readonly utilCreateSelector: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilCreateSelector']>
+    readonly utilGetCoordinatesFromElement: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilGetCoordinatesFromElement']>
+    readonly utilRefreshRect: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilRefreshRect']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

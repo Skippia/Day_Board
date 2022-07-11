@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { MapperForCrossTable } from '~/types/TCrossTable'
+import type { IMapperForCrossTable } from '~/types/types'
 
 interface Props {
-  xMapper: MapperForCrossTable
-  yMapper: MapperForCrossTable
+  xMapper: IMapperForCrossTable
+  yMapper: IMapperForCrossTable
   thRootHorizontalClasses?: Array<string>
   thRootVerticalClasses?: Array<string>
   tdRootDataClasses?: Array<string>

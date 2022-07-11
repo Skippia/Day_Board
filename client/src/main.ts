@@ -14,13 +14,10 @@ const app = createApp(App)
 
 const components = [
   {
-    name: 'SignUp', path: 'organisms/SignUp',
+    name: 'AuthSignUp', path: 'organisms/Auth/AuthSignUp',
   },
   {
-    name: 'TabRoot', path: 'organisms/TabRoot',
-  },
-  {
-    name: 'LogIn', path: 'organisms/LogIn',
+    name: 'AuthLogIn', path: 'organisms/Auth/AuthLogIn',
   },
 ]
 

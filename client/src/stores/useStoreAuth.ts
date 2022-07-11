@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { IUserInfo } from './ServerInterface'
-import { apiDeskDayService } from '~/services/ApiService'
+import { Tooltip } from '~/utils/Tooltip'
+import { apiService } from '~/services/ApiService'
 
 export const useStoreAuth = defineStore('auth', {
   state: () => ({
@@ -20,7 +21,7 @@ export const useStoreAuth = defineStore('auth', {
   },
   actions: {
     async login({ email, password }: { email: string; password: string }) {
-      const { data, error } = await apiDeskDayService.login({ email, password })
+      const { data, error } = await apiService.login({ body: { email, password } })
 
       if (!error) {
         this.$state.userInfo = data.data
@@ -29,8 +30,8 @@ export const useStoreAuth = defineStore('auth', {
       }
       Tooltip.run({
         error: !!error,
-        message_success: data?.message,
-        message_fail: error,
+        messageSuccess: data?.message,
+        messageFail: error,
       })
 
       return !error

@@ -8,8 +8,9 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "strictNullChecks": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "allowJs": true,
+
     "types": [
       "vite/client",
       "vite-plugin-pages/client",

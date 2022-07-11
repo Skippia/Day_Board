@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 
-const useDelayRenderFix = (contentWrapper: Ref<HTMLElement | undefined>) => {
+const useDelayRenderFix = (contentWrapper: Ref<HTMLElement | undefined>, delay: number) => {
   const currentTimeout = ref()
 
   onBeforeUpdate(() => {
@@ -13,7 +13,7 @@ const useDelayRenderFix = (contentWrapper: Ref<HTMLElement | undefined>) => {
     contentWrapper.value?.classList.remove('scroll-invisible')
     currentTimeout.value = setTimeout(() => {
       contentWrapper.value?.classList.add('scroll-visible')
-    }, 600)
+    }, delay)
   })
 }
 
