@@ -1,35 +1,30 @@
 <script setup lang="ts">
-import { useStoreUser } from '../stores/useStoreUser'
-import { usePaintTableCell } from '~/hooks/usePaintTableCell'
-import { useInitStartValues } from '~/hooks/useInitStartValues'
-import { useTableFireAction } from '~/hooks/useTableFireAction'
-import { useTableHoverAction } from '~/hooks/useTableHoverAction'
-import { useGenerateColor } from '~/hooks/useGenerateColor'
-
 const StoreUser = useStoreUser()
+const searcherTds = () => [...document.querySelectorAll('td')].filter(el => !el.classList.contains('time'))
+const searcherTable = () => document.querySelector('table')
+const isTableCell = utilCreateSelector({ tagName: 'td' })
 
 const {
-  searcherTds,
-  searcherTable,
-  rangeTransparency,
-  colorTransparency,
   yMapper,
   xMapper,
   times,
   tasks,
   currentList,
-} = useInitStartValues(StoreUser)
+} = useInitCrossTableValues(StoreUser)
 
-const { generateColor } = useGenerateColor({ rangeTransparency, colorTransparency })
+const { generateColor } = useGenerateColor({ rangeTransparency: [0, 70], colorTransparency: [0, 30] })
 
-//* To paint table cells
+//* To paint table cells by selector
 usePaintTableCell({ searcher: searcherTds, generateColor })
 
-//* Get fire listener
-const { fireActionOnTableCell } = useTableFireAction(generateColor, StoreUser.updateCurrentDay, currentList)
+//* Get click listener
+const { clickActionOnTableCell }
+  = useTableClickAction(
+    { isClickElement: isTableCell, generateColor, updateCurrentDay: StoreUser.updateCurrentDay, currentList },
+  )
 
 //* Get hover listener
-const { hoverActionOnTableCell } = useTableHoverAction(searcherTable)
+const { hoverActionOnTableCell } = useTableHoverAction({ searcherTable, isHoverElement: isTableCell })
 
 onMounted(() => {
   //* Upload data
@@ -42,8 +37,8 @@ onMounted(() => {
     <CrossTable
       ref="table" class="w-[85%]" :x-mapper="xMapper" :y-mapper="yMapper"
       :th-root-horizontal-classes="['rotate-transform', 'border-r-2', 'border-b-2']"
-      :th-root-vertical-classes="['border-r-2', 'px-3']" @mouseover="hoverActionOnTableCell"
-      @click="fireActionOnTableCell"
+      :th-root-vertical-classes="['border-r-2', 'px-3']" @mouseover="(hoverActionOnTableCell)"
+      @click="clickActionOnTableCell"
     >
       <template #thHorizontal="{ xElement }">
         <p class="rotate-transform__text px-2">

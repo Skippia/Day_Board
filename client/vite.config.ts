@@ -44,10 +44,16 @@ export default defineConfig({
         'vue-router',
       ],
       dts: true,
+
       dirs: [
         './src/stores',
         './src/utils',
-        './src/hooks',
+        './src/services',
+        './src/composables',
+        './src/composables/CrossTable',
+        './src/composables/DatePicker',
+        './src/composables/Auth',
+        './src/composables/V',
       ],
       vueTemplate: true,
     }),

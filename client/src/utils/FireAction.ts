@@ -1,42 +1,42 @@
-interface IFireAction {
-  isFireElement: (target: HTMLElement) => boolean
-  actionOnFire: Function
+interface IClickAction {
+  isClickElement: (target: HTMLElement) => boolean
+  actionOnClick: Function
   failurePreCondition?: (...args: any[]) => boolean
-  fireActionWatcher: (e: Event) => void
+  clickActionWatcher: (e: Event) => void
 }
 
-class FireAction implements IFireAction {
-  isFireElement: (target: HTMLElement) => boolean
-  actionOnFire: Function
+class ClickAction implements IClickAction {
+  isClickElement: (target: HTMLElement) => boolean
+  actionOnClick: Function
   failurePreCondition: (...args: any[]) => boolean
 
   constructor({
-    isFireElement,
-    actionOnFire,
+    isClickElement,
+    actionOnClick,
     failurePreCondition,
   }: {
-    isFireElement: (target: HTMLElement) => boolean
-    actionOnFire: Function
+    isClickElement: (target: HTMLElement) => boolean
+    actionOnClick: Function
     failurePreCondition: (...args: any[]) => boolean
   }) {
-    this.isFireElement = isFireElement
-    this.actionOnFire = actionOnFire
+    this.isClickElement = isClickElement
+    this.actionOnClick = actionOnClick
     this.failurePreCondition = failurePreCondition
   }
 
   init() {
-    return this.fireActionWatcher.bind(this)
+    return this.clickActionWatcher.bind(this)
   }
 
-  fireActionWatcher(e: Event) {
+  clickActionWatcher(e: Event) {
     const target = e.target as HTMLElement
-    if (!this.isFireElement(target))
+    if (!this.isClickElement(target))
       return
     if (this.failurePreCondition && this.failurePreCondition(target))
       return
 
-    this.actionOnFire(target)
+    this.actionOnClick(target)
   }
 }
 
-export { FireAction }
+export { ClickAction }

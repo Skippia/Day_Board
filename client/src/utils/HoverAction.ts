@@ -1,10 +1,3 @@
-interface ICoordinates {
-  xStart: number
-  width: number
-  yStart: number
-  height: number
-}
-
 interface IHoverOnElement {
   isHoverElement: (target: HTMLElement) => boolean
   actionOnHover: Function
@@ -26,7 +19,7 @@ class HoverAction implements IHoverOnElement {
     initHoverOnElement: Function
     isHoverElement: (target: HTMLElement) => boolean
     actionOnHover: Function
-    failurePreCondition: (...args: any[]) => boolean
+    failurePreCondition?: (...args: any[]) => boolean
   }) {
     if (initHoverOnElement) {
       // If there is initial action - to run it
@@ -49,11 +42,11 @@ class HoverAction implements IHoverOnElement {
       return
 
     // Check and whether is possible - start action process
-    if (!this.failurePreCondition || this.failurePreCondition(target))
+    if (this.failurePreCondition && this.failurePreCondition(target))
       return
 
     this.actionOnHover(target)
   }
 }
 
-export { type ICoordinates, HoverAction }
+export { HoverAction }

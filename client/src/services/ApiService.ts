@@ -1,17 +1,21 @@
 import type { AxiosInstance } from 'axios'
+import type { TNetworkMethod } from '~/types/types'
 
-type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
-
-const useFetch = ({ url, method, apiConfig }: { url: string; method: TNetworkMethod; apiConfig: AxiosInstance }) => {
-  return async (body?: object) => {
+const useFetch = ({ url, method, apiConfig, additionalReqOptions }:
+{ url: string; method: TNetworkMethod; apiConfig: AxiosInstance; additionalReqOptions?: object }) => {
+  return async ({ body, additionalUrlParams }: { body?: object; additionalUrlParams?: string }) => {
     let data
     let error
+    const resultUrl = additionalUrlParams ? `${url}${additionalUrlParams}` : url
+
+    console.log('Result url:', resultUrl)
+
     try {
       if (method === 'get')
-        data = await apiConfig.get(url)
+        data = await apiConfig.get(resultUrl, { ...additionalReqOptions })
 
       else if (method === 'post' && body)
-        data = await apiConfig.post(url, { ...body })
+        data = await apiConfig.post(resultUrl, { ...body }, { ...additionalReqOptions })
 
       data = data?.data
     }
@@ -21,15 +25,51 @@ const useFetch = ({ url, method, apiConfig }: { url: string; method: TNetworkMet
     return { data, error }
   }
 }
+
 class ApiService {
   apiConfig: AxiosInstance
   login: Function
+  loadAllPageData: Function
+  createDay: Function
+  filterDaysByDate: Function
+
   constructor(apiConfig: AxiosInstance) {
     this.apiConfig = apiConfig
-    this.login = useFetch({ url: '/auth/log-in', method: 'post', apiConfig })
+    this.login = useFetch({
+      url: '/auth/log-in',
+      method: 'post',
+      apiConfig,
+      additionalReqOptions: {
+        withCredentials: true,
+      },
+    })
+    this.loadAllPageData = useFetch({
+      url: '/get-days',
+      method: 'get',
+      apiConfig,
+      additionalReqOptions: {
+        withCredentials: true,
+      },
+    })
+    this.createDay = useFetch({
+      url: '/create-day',
+      method: 'post',
+      apiConfig,
+      additionalReqOptions: {
+        withCredentials: true,
+      },
+    })
+    this.filterDaysByDate = useFetch({
+      url: '/get-days-by-date',
+      method: 'get',
+      apiConfig,
+      additionalReqOptions: {
+        withCredentials: true,
+      },
+    })
   }
 }
 
-const apiDeskDayService = new ApiService(apiDeskDay)
+const apiService = new ApiService(axiosDayApiInstance)
 
-export { apiDeskDayService }
+export { apiService }
