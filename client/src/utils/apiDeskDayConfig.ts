@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const apiDeskDay = axios.create({
+const axiosDayApiInstance = axios.create({
   baseURL: baseApiURL,
 })
 
-export { apiDeskDay }
+export { axiosDayApiInstance }

@@ -1,5 +1,6 @@
 import * as handlerFactory from '../utils/handlerFactory.js'
 import { Day } from '../models/Day.js'
+import { filterBetween } from '../utils/filterBetween.js'
 
 const getDays = handlerFactory.getAll({ model: Day, isAdmin: false })
 
@@ -26,7 +27,25 @@ const deleteDayById = handlerFactory.deleteOne({
 const createDay = handlerFactory.createOne({
   model: Day,
   message: 'The new day has been created!',
+  pathMergeData: { type: 'params', field: 'dateDay' },
   isAdmin: false,
 })
 
-export { getDays, getDayById, modifyDayById, deleteDayById, createDay }
+const filterDaysByDate = handlerFactory.getAll({
+  model: Day,
+  message: 'Days to accord with setted dates!',
+  filterConfig: [{
+    filterFn: filterBetween,
+    searchParam: 'dateDay',
+    paramsFilter: [
+      { type: 'query', field: 'startDate', name: 'start' },
+      { type: 'query', field: 'endDate', name: 'end' }
+    ]
+  }],
+  isAdmin: false,
+})
+
+
+export { getDays, getDayById, modifyDayById, deleteDayById, createDay, filterDaysByDate }
+
+

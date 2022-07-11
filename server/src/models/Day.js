@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { User } from './User.js'
 
 const { Schema, model } = mongoose
 
@@ -12,17 +11,27 @@ const schemaDay = new Schema({
     type: [String],
     required: [true, 'listTime is required field'],
   },
-  data: {
-    type: Map,
-    of: String,
-    required: [true, 'data is required field'],
-  },
   userId: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: [true, 'day must have own master'],
   },
+  dateDay: {
+    type: Date,
+    default: Date.now()
+  }
 })
+
+schemaDay.statics.toClient = function (day) {
+  const { _id, listTasks, listTimes, userId, dateDay, } = day._doc
+  return {
+    _id,
+    listTasks,
+    listTimes,
+    userId,
+    dateDay,
+  }
+}
 
 const modelDay = model('Day', schemaDay)
 

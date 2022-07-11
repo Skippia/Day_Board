@@ -14,7 +14,7 @@ app.use(cookieParser())
 app.use(helmet())
 app.use(
   cors({
-    // origin: "http://localhost:8080",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 )
