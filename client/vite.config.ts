@@ -85,6 +85,7 @@ export default defineConfig({
 
   // https://github.com/vitest-dev/vitest
   test: {
+    globals: true,
     environment: 'jsdom',
   },
 })
