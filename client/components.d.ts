@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     CrossTableTH: typeof import('./src/atoms/CrossTable/CrossTableTH.vue')['default']
     DatePicker: typeof import('./src/organisms/DatePicker.vue')['default']
     Panel: typeof import('./src/pages/panel/index.vue')['default']
+    RadarChart: typeof import('./src/organisms/V/RadarChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelectPicker: typeof import('./src/organisms/SelectPicker.vue')['default']
