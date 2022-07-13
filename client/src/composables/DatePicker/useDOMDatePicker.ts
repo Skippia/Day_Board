@@ -1,3 +1,5 @@
+// ? Imperative shell
+
 export function useDOMDatePicker(storeDatePicker: ReturnType<typeof useStoreDatePicker>) {
   const isRenderedElement = ref(true)
   const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)
