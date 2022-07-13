@@ -19,7 +19,6 @@ declare global {
   const computed: typeof import('vue')['computed']
   const convertDate: typeof import('./src/utils/date')['convertDate']
   const createApp: typeof import('vue')['createApp']
-  const currentDate: typeof import('./src/utils/date')['currentDate']
   const customRef: typeof import('vue')['customRef']
   const daysWeek: typeof import('./src/utils/constants')['daysWeek']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -27,6 +26,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getDOMDatePicker: typeof import('./src/composables/DatePicker/getDOMDatePicker')['getDOMDatePicker']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
@@ -81,7 +81,6 @@ declare global {
   const useStoreDay: typeof import('./src/stores/useStoreDay')['useStoreDay']
   const useStoreDayFilter: typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']
   const useStoreUser: typeof import('./src/stores/useStoreUser')['useStoreUser']
-  const useSwitchMonthsDatePicker: typeof import('./src/composables/DatePicker/useSwitchMonthsDatePicker')['useSwitchMonthsDatePicker']
   const useTableClickAction: typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']
   const useTableHoverAction: typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']
   const useTabs: typeof import('./src/composables/V/useTabs')['useTabs']
@@ -116,7 +115,6 @@ declare module '@vue/runtime-core' {
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly convertDate: UnwrapRef<typeof import('./src/utils/date')['convertDate']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
-    readonly currentDate: UnwrapRef<typeof import('./src/utils/date')['currentDate']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly daysWeek: UnwrapRef<typeof import('./src/utils/constants')['daysWeek']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -124,6 +122,7 @@ declare module '@vue/runtime-core' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDOMDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/getDOMDatePicker')['getDOMDatePicker']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
@@ -178,7 +177,6 @@ declare module '@vue/runtime-core' {
     readonly useStoreDay: UnwrapRef<typeof import('./src/stores/useStoreDay')['useStoreDay']>
     readonly useStoreDayFilter: UnwrapRef<typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']>
     readonly useStoreUser: UnwrapRef<typeof import('./src/stores/useStoreUser')['useStoreUser']>
-    readonly useSwitchMonthsDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/useSwitchMonthsDatePicker')['useSwitchMonthsDatePicker']>
     readonly useTableClickAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']>
     readonly useTableHoverAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']>
     readonly useTabs: UnwrapRef<typeof import('./src/composables/V/useTabs')['useTabs']>

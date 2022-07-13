@@ -10,11 +10,13 @@
     "strictNullChecks": true,
     "noUnusedLocals": false,
     "allowJs": true,
-
     "types": [
       "vite/client",
       "vite-plugin-pages/client",
-      "unplugin-icons/types/vue"
+      "unplugin-icons/types/vue",
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
     ],
     "paths": {
       "~/*": [
@@ -22,5 +24,8 @@
       ]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }

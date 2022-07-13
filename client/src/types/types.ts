@@ -28,11 +28,11 @@ interface IUserInfo {
 }
 
 interface TFilter {
+  init: (() => void) | undefined
   run: (e: MouseEvent) => void
   condition: (e: MouseEvent) => boolean
   restoreChosenDay: (currentDate: { month: number; year: number }) => void
-  init: () => void
-  beforeRemove: () => void
+  beforeRemove: (() => void) | undefined
 }
 
 type TUserGender = 'MALE' | 'FEMALE'
@@ -40,9 +40,12 @@ type TUserRole = 'USER' | 'ADMIN'
 type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
 type TRefreshRect = (rect: HTMLElement, targetCoordinates: DOMRect) => void
 type TMouseEvent = (e: MouseEvent) => void
+
+interface IFullDate { day: number; month: number; year: number }
 export type {
   IUserInfo, TUserGender, TUserRole,
   TFunctionCondition, IMapperForCrossTable, IDeskDayData,
   TTask, IDate, TNetworkMethod, TRefreshRect, TFilter, TMouseEvent,
+  IFullDate,
 }
 
