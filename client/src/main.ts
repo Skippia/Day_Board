@@ -37,5 +37,8 @@ app
   .use(router)
   .use(createPinia())
 
+app.config.errorHandler = (err, instance, info) => {
+  console.error(err, instance, info)
+}
 app.mount('#app')
 

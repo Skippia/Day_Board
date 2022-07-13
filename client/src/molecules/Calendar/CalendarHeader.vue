@@ -5,8 +5,8 @@ const props = defineProps<{
   switchNextMonth: (e: Event) => void
 }>()
 
-const storeDayFilter = useStoreDayFilter()
-const getCurrentDate = computed(() => storeDayFilter.getCurrentDate)
+const storeDatePicker = useStoreDatePicker()
+const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)
 </script>
 
 <template>

@@ -26,7 +26,6 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const getDOMDatePicker: typeof import('./src/composables/DatePicker/getDOMDatePicker')['getDOMDatePicker']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
@@ -68,8 +67,8 @@ declare global {
   const useAuthSignUp: typeof import('./src/composables/Auth/useAuthSignUp')['useAuthSignUp']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDOMDatePicker: typeof import('./src/composables/DatePicker/useDOMDatePicker')['useDOMDatePicker']
   const useDateClickListener: typeof import('./src/composables/DatePicker/useDateClickListener')['useDateClickListener']
-  const useDateFilter: typeof import('./src/composables/DatePicker/useDateFilter')['useDateFilter']
   const useDelayRenderFix: typeof import('./src/composables/V/useDelayRenderFix')['useDelayRenderFix']
   const useGenerateColor: typeof import('./src/composables/V/useGenerateColor')['useGenerateColor']
   const useInitCrossTableValues: typeof import('./src/composables/CrossTable/useInitCrossTableValues')['useInitCrossTableValues']
@@ -78,8 +77,8 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
   const useStoreAuth: typeof import('./src/stores/useStoreAuth')['useStoreAuth']
+  const useStoreDatePicker: typeof import('./src/stores/useStoreDatePicker')['useStoreDatePicker']
   const useStoreDay: typeof import('./src/stores/useStoreDay')['useStoreDay']
-  const useStoreDayFilter: typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']
   const useStoreUser: typeof import('./src/stores/useStoreUser')['useStoreUser']
   const useTableClickAction: typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']
   const useTableHoverAction: typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']
@@ -122,7 +121,6 @@ declare module '@vue/runtime-core' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getDOMDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/getDOMDatePicker')['getDOMDatePicker']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
@@ -164,8 +162,8 @@ declare module '@vue/runtime-core' {
     readonly useAuthSignUp: UnwrapRef<typeof import('./src/composables/Auth/useAuthSignUp')['useAuthSignUp']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDOMDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/useDOMDatePicker')['useDOMDatePicker']>
     readonly useDateClickListener: UnwrapRef<typeof import('./src/composables/DatePicker/useDateClickListener')['useDateClickListener']>
-    readonly useDateFilter: UnwrapRef<typeof import('./src/composables/DatePicker/useDateFilter')['useDateFilter']>
     readonly useDelayRenderFix: UnwrapRef<typeof import('./src/composables/V/useDelayRenderFix')['useDelayRenderFix']>
     readonly useGenerateColor: UnwrapRef<typeof import('./src/composables/V/useGenerateColor')['useGenerateColor']>
     readonly useInitCrossTableValues: UnwrapRef<typeof import('./src/composables/CrossTable/useInitCrossTableValues')['useInitCrossTableValues']>
@@ -174,8 +172,8 @@ declare module '@vue/runtime-core' {
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useStoreAuth: UnwrapRef<typeof import('./src/stores/useStoreAuth')['useStoreAuth']>
+    readonly useStoreDatePicker: UnwrapRef<typeof import('./src/stores/useStoreDatePicker')['useStoreDatePicker']>
     readonly useStoreDay: UnwrapRef<typeof import('./src/stores/useStoreDay')['useStoreDay']>
-    readonly useStoreDayFilter: UnwrapRef<typeof import('./src/stores/useStoreDayFilter')['useStoreDayFilter']>
     readonly useStoreUser: UnwrapRef<typeof import('./src/stores/useStoreUser')['useStoreUser']>
     readonly useTableClickAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableClickAction')['useTableClickAction']>
     readonly useTableHoverAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']>

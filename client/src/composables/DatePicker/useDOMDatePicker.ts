@@ -1,22 +1,22 @@
-export function getDOMDatePicker(storeDayFilter: ReturnType<typeof useStoreDayFilter>) {
+export function useDOMDatePicker(storeDatePicker: ReturnType<typeof useStoreDatePicker>) {
   const isRenderedElement = ref(true)
-  const getCurrentDate = computed(() => storeDayFilter.getCurrentDate)
+  const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)
 
   function switchPreviousMonth() {
     rerenderComponent()
 
-    storeDayFilter.updateCurrentDate({ month: getCurrentDate.value.month - 1 })
+    storeDatePicker.updateCurrentDate({ month: getCurrentDate.value.month - 1 })
 
     if (getCurrentDate.value.month < 0)
-      storeDayFilter.updateCurrentDate({ month: 11, year: getCurrentDate.value.year - 1 })
+      storeDatePicker.updateCurrentDate({ month: 11, year: getCurrentDate.value.year - 1 })
   }
   function switchNextMonth() {
     rerenderComponent()
 
-    storeDayFilter.updateCurrentDate({ month: getCurrentDate.value.month + 1 })
+    storeDatePicker.updateCurrentDate({ month: getCurrentDate.value.month + 1 })
 
     if (getCurrentDate.value.month > 11)
-      storeDayFilter.updateCurrentDate({ month: 0, year: getCurrentDate.value.year + 1 })
+      storeDatePicker.updateCurrentDate({ month: 0, year: getCurrentDate.value.year + 1 })
   }
 
   function rerenderComponent() {

@@ -1,15 +1,19 @@
 // ? Imperative shell
 
+// ? load today data -> onChangeDay -> change date for chosen day -> wipe old day -> init day element
+// ? -> paint new day -> since date was updated run watch and update filter date in store
+// ? -> store does request and update data for current date -> display actual date for current date range
+
 import { activate, disactivate, findElementByDay, updateDate } from '~/logic/DatePicker/core'
 import type { IFullDate } from '~/types/types'
 
-const useDateClickListener = ({ activeClasses, condition, primaryFilter, storeDayFilter }: {
+const useDateClickListener = ({ activeClasses, condition, primaryFilter, storeDatePicker }: {
   activeClasses: string[]
   condition: (e: MouseEvent) => boolean
   primaryFilter: boolean
-  storeDayFilter: ReturnType<typeof useStoreDayFilter>
+  storeDatePicker: ReturnType<typeof useStoreDatePicker>
 }) => {
-  const getCurrentDate = computed(() => storeDayFilter.getCurrentDate)
+  const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)
   const lastChosenDayEl = ref<HTMLElement>()
 
   //* Start values equal today date
@@ -21,8 +25,7 @@ const useDateClickListener = ({ activeClasses, condition, primaryFilter, storeDa
 
   //* Set new day element for chosen day
   function initDayElement(day: number) {
-    /* This fn init chosen day element depends on chosen day */
-
+    /* This fn init chosen day element depends on chosen day number */
     const target = findElementByDay(day)
     if (target) {
       lastChosenDayEl.value = target
@@ -86,7 +89,10 @@ const useDateClickListener = ({ activeClasses, condition, primaryFilter, storeDa
     /* This function create fn that is invoked after creating toggleFilter */
 
     //* Primary filter works always
-    if (primaryFilter) { return () => { } }
+    if (primaryFilter) {
+      return () => {
+      }
+    }
 
     //* Additional filter requires re-initialization of chosen day
     else if (!primaryFilter) {

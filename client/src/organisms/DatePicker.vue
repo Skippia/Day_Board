@@ -1,13 +1,16 @@
 <script setup lang='ts'>
-const storeDayFilter = useStoreDayFilter()
-const toggleFilters = computed(() => storeDayFilter.getToggleFilters)
+const storeDatePicker = useStoreDatePicker()
+const toggleFilters = computed(() => storeDatePicker.getToggleFilters)
 
 const currentMode = ref<'single' | 'multi'>('single')
 const renderedElement = ref<HTMLElement>()
 
-//* Flag whether the datepicker is loaded and helpers for datepicker (DOM fn-s & props)
+//* Load today
+storeDatePicker.loadDaysByDate({ start: Date.now(), end: Date.now() })
+
+//* Flag whether the datepicker is loaded and (DOM fn-s & props)
 const { isRenderedElement, getAmountDaysInCurrentMonth, switchNextMonth, switchPreviousMonth }
-  = getDOMDatePicker(storeDayFilter)
+  = useDOMDatePicker(storeDatePicker)
 
 //* Setting custom listener for datepicker (primary filter)
 const { toggleFilter: primaryEdge, data: primaryEdgeDay } = useDateClickListener({
@@ -16,7 +19,7 @@ const { toggleFilter: primaryEdge, data: primaryEdgeDay } = useDateClickListener
     return !e.ctrlKey
   },
   primaryFilter: true,
-  storeDayFilter,
+  storeDatePicker,
 })
 
 //* Setting custom listener for datepicker (additional filter)
@@ -26,19 +29,11 @@ const { toggleFilter: additionalEdge, data: additionalEdgeDay } = useDateClickLi
     return e.ctrlKey
   },
   primaryFilter: false,
-  storeDayFilter,
-})
-
-//* Watch out for chaning edge day
-watch([primaryEdgeDay, additionalEdgeDay], ([primaryEdgeDay, additionalEdgeDay]) => {
-  if (currentMode.value === 'single')
-    storeDayFilter.updateFilterDate([primaryEdgeDay])
-  else if (currentMode.value === 'multi')
-    storeDayFilter.updateFilterDate([primaryEdgeDay, additionalEdgeDay])
+  storeDatePicker,
 })
 
 //* Configuring change day event (@click) depending on filters
-const { changeDay } = useTrackDatePicker({ renderedElement, toggleFilters, storeDayFilter })
+const { changeDay } = useTrackDatePicker({ renderedElement, toggleFilters, storeDatePicker })
 
 //* Tracking state of rerender component
 function updateStateRenderedEl(renderedEl: HTMLElement | undefined) {
@@ -48,27 +43,39 @@ function updateStateRenderedEl(renderedEl: HTMLElement | undefined) {
 //* Tracking state of mode filter
 function updateFilterMode(mode: 'single' | 'multi') {
   currentMode.value = mode
-
-  //* Primary filter is working always (by default)
-  if (mode === 'single') {
-    //* Invoke appropriate before remove filter function
-    storeDayFilter.updateToggleFilters([primaryEdge])
-    //* Remove additional filter
-    if (storeDayFilter.getToggleFilters[1].beforeRemove)
-      storeDayFilter.getToggleFilters[1].beforeRemove()
-  }
-
-  else if (mode === 'multi') {
-    //* Adding additional filter
-    storeDayFilter.updateToggleFilters([primaryEdge, additionalEdge])
-    //* Init additional filter
-    if (storeDayFilter.getToggleFilters[1].init)
-      storeDayFilter.getToggleFilters[1].init()
-  }
 }
 
 //* Single mode switch on
-storeDayFilter.updateToggleFilters([primaryEdge])
+storeDatePicker.updateToggleFilters([primaryEdge])
+
+watch(currentMode, (mode) => {
+  //* Primary filter is working always (by default) [multi --> single]
+  if (mode === 'single') {
+    //* Invoke appropriate before remove filter function
+    if (storeDatePicker.getToggleFilters[1].beforeRemove)
+      storeDatePicker.getToggleFilters[1].beforeRemove()
+
+    //* Remove additional filter
+    storeDatePicker.updateToggleFilters([primaryEdge])
+  }
+
+  // [single --> multi]
+  else if (mode === 'multi') {
+    //* Adding additional filter
+    storeDatePicker.updateToggleFilters([primaryEdge, additionalEdge])
+    //* Init additional filter
+    if (storeDatePicker.getToggleFilters[1].init)
+      storeDatePicker.getToggleFilters[1].init()
+  }
+})
+
+//* Watch out for changing edge day
+watch([currentMode, primaryEdgeDay, additionalEdgeDay], ([currentMode, primaryEdgeDay, additionalEdgeDay]) => {
+  if (currentMode === 'single')
+    storeDatePicker.updateFilterDate([primaryEdgeDay])
+  else if (currentMode === 'multi')
+    storeDatePicker.updateFilterDate([primaryEdgeDay, additionalEdgeDay])
+})
 </script>
 
 <template>
