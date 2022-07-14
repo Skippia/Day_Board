@@ -8,8 +8,6 @@ const useFetch = ({ url, method, apiConfig, additionalReqOptions }:
     let error
     const resultUrl = additionalUrlParams ? `${url}${additionalUrlParams}` : url
 
-    console.log('Result url:', resultUrl)
-
     try {
       if (method === 'get')
         data = await apiConfig.get(resultUrl, { ...additionalReqOptions })
@@ -31,7 +29,7 @@ class ApiService {
   login: Function
   loadAllPageData: Function
   createDay: Function
-  filterDaysByDate: Function
+  loadDaysByDate: Function
 
   constructor(apiConfig: AxiosInstance) {
     this.apiConfig = apiConfig
@@ -59,7 +57,7 @@ class ApiService {
         withCredentials: true,
       },
     })
-    this.filterDaysByDate = useFetch({
+    this.loadDaysByDate = useFetch({
       url: '/get-days-by-date',
       method: 'get',
       apiConfig,

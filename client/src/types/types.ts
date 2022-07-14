@@ -3,7 +3,7 @@ interface IDate { year: number; month: number; day: number }
 interface IDeskDayData {
   listTasks: string[]
   listTimes: string[]
-  data: TTask[]
+  completedTasks: TTask[]
 }
 
 interface TTask {
@@ -38,7 +38,10 @@ interface TFilter {
 type TUserGender = 'MALE' | 'FEMALE'
 type TUserRole = 'USER' | 'ADMIN'
 type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
-type TRefreshRect = (rect: HTMLElement, targetCoordinates: DOMRect) => void
+interface TRefreshRect {
+  rect: HTMLElement
+  targetCoordinates: DOMRect
+}
 type TMouseEvent = (e: MouseEvent) => void
 
 interface IFullDate { day: number; month: number; year: number }

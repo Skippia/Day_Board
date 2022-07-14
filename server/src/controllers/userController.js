@@ -27,7 +27,7 @@ const deleteDayById = handlerFactory.deleteOne({
 const createDay = handlerFactory.createOne({
   model: Day,
   message: 'The new day has been created!',
-  pathMergeData: { type: 'params', field: 'dateDay' },
+  pathMergeData: { type: 'params', field: 'date' },
   isAdmin: false,
 })
 
@@ -36,7 +36,7 @@ const filterDaysByDate = handlerFactory.getAll({
   message: 'Days to accord with setted dates!',
   filterConfig: [{
     filterFn: filterBetween,
-    searchParam: 'dateDay',
+    searchParam: 'date',
     paramsFilter: [
       { type: 'query', field: 'startDate', name: 'start' },
       { type: 'query', field: 'endDate', name: 'end' }

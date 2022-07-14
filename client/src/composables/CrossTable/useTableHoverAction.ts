@@ -11,12 +11,12 @@ const useTableHoverAction = (
     refreshRect,
   }: {
     getCoordinatesFromElement: (element: HTMLElement) => DOMRect
-    refreshRect: TRefreshRect
+    refreshRect: ({ rect, targetCoordinates }: TRefreshRect) => void
   }) => {
     return (target: HTMLElement) => {
       const targetCoordinates = getCoordinatesFromElement(target)
       const refreshingHover = document.querySelector('.rect') as HTMLElement
-      refreshRect(refreshingHover, targetCoordinates)
+      refreshRect({ rect: refreshingHover, targetCoordinates })
     }
   }
 
@@ -48,7 +48,7 @@ const useTableHoverAction = (
       hoverActionOnTableCell.value = new HoverAction({
         initHoverOnElement: createHoverRect(table),
         isHoverElement,
-        actionOnHover: initRepaintProcess({ getCoordinatesFromElement: utilGetCoordinatesFromElement, refreshRect: utilRefreshRect }),
+        actionOnHover: initRepaintProcess({ getCoordinatesFromElement: UTIL.getCoordinatesFromElement, refreshRect: UTIL.refreshRect }),
       }).init()
     }
   })

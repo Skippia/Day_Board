@@ -16,8 +16,8 @@ const logIn = catchAsync((req, res) => {
 
   return AuthService.logIn({ email, password }).then(({ token, user }) => {
     res.cookie('jwt', token, {
-      // httpOnly: true,
-      expires: new Date(Date.now() + 60 * 60 * 1000),
+      httpOnly: true,
+      expires: new Date(Date.now() + 60 * 60 * 10000),
     })
     
     const userToClient = User.toClient(user)
