@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     '[...all]': typeof import('./src/pages/[...all].vue')['default']
     AsidePanel: typeof import('./src/templates/AsidePanel.vue')['default']
+    Auth: typeof import('./src/pages/auth/index.vue')['default']
     AuthLayout: typeof import('./src/templates/AuthLayout.vue')['default']
     AuthLogIn: typeof import('./src/organisms/Auth/AuthLogIn.vue')['default']
     AuthSignUp: typeof import('./src/organisms/Auth/AuthSignUp.vue')['default']

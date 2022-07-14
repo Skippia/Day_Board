@@ -1,3 +1,4 @@
+import type { Router } from 'vue-router'
 import * as Yup from 'yup'
 
 const storeAuth = useStoreAuth()
