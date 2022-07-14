@@ -1,4 +1,3 @@
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -38,4 +37,44 @@
 
 .route-leave-active {
   transition: all 0.5s ease;
+}
+
+
+
+.notification-day-enter-from,
+.notification-day-leave-to {
+  opacity: 0;
+}
+
+.notification-day-enter-to,
+.notification-day-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-day-enter-active {
+  transition: all 0.5s ease;
+}
+
+.notification-day-leave-active {
+  transition: all 0.5s ease;
+}
+
+
+.radar-enter-from,
+.radar-leave-to {
+  opacity: 0;
+}
+
+.radar-enter-to,
+.radar-leave-from {
+  opacity: 1;
+}
+
+.radar-enter-active {
+  transition: all 2s ease;
+}
+
+.radar-leave-active {
+  transition: all 0s ease;
 }

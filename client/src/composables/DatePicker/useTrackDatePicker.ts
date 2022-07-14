@@ -1,13 +1,14 @@
+// ? Imperative shell
 import type { Ref } from 'vue'
 import type { TFilter } from '~/types/types'
 
-const useTrackDatePicker = ({ renderedElement, toggleFilters, storeDayFilter }:
+const useTrackDatePicker = ({ renderedElement, toggleFilters, storeDatePicker }:
 {
   renderedElement: Ref<HTMLElement | undefined>
   toggleFilters: Ref<TFilter[]>
-  storeDayFilter: ReturnType<typeof useStoreDayFilter>
+  storeDatePicker: ReturnType<typeof useStoreDatePicker>
 }) => {
-  const getCurrentDate = computed(() => storeDayFilter.getCurrentDate)
+  const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)
   watch(renderedElement, (renderStatus) => {
     //* If element was rerendered
     if (renderStatus) {

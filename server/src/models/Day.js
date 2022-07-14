@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const { Schema, model } = mongoose
 
+
 const schemaDay = new Schema({
   listTasks: {
     type: [String],
@@ -16,20 +17,35 @@ const schemaDay = new Schema({
     ref: 'User',
     required: [true, 'day must have own master'],
   },
-  dateDay: {
+  date: {
     type: Date,
     default: Date.now()
-  }
+  },
+  completedTasks: {
+    type: [{
+      _id: false,
+      taskContent: {
+        type: String,
+        required: true
+      },
+      timeTask: {
+        type: String,
+        required: true
+      }
+    }],
+    required: [true, 'completedTasks is required field'],
+  },
 })
 
 schemaDay.statics.toClient = function (day) {
-  const { _id, listTasks, listTimes, userId, dateDay, } = day._doc
+  const { _id, listTasks, listTimes, userId, date, completedTasks} = day._doc
   return {
     _id,
     listTasks,
     listTimes,
     userId,
-    dateDay,
+    date,
+    completedTasks
   }
 }
 

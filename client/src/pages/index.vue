@@ -2,7 +2,7 @@
 const StoreUser = useStoreUser()
 const searcherTds = () => [...document.querySelectorAll('td')].filter(el => !el.classList.contains('time'))
 const searcherTable = () => document.querySelector('table')
-const isTableCell = utilCreateSelector({ tagName: 'td' })
+const isTableCell = UTIL.createSelector({ tagName: 'td' })
 
 const {
   yMapper,

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { TTask } from '~/types/IDeskData'
+import type { TTask } from '~/types/types'
 
 export const useStoreUser = defineStore('user', {
   state: () => ({

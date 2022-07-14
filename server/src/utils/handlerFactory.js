@@ -115,7 +115,6 @@ const createOne = ({ model, pathMergeData, message, isAdmin = true }) =>
     const newData = req.body
     let resultData = { ...newData }
 
-    console.log('lalal')
     if (pathMergeData) {
       const { type, field } = pathMergeData
       const mergeData = req[type][field]

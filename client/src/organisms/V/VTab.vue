@@ -24,11 +24,7 @@ const { getTabNames, getCurrentTabName, getRootRef, getCurrentClasses, getToggle
     </div>
     <div class="tab__content">
       <div ref="overflowControl">
-        <Transition name="fade" mode="out-in">
-          <keep-alive>
-            <component :is="getCurrentTabName" />
-          </keep-alive>
-        </Transition>
+        <slot name="dynamic-component" :get-current-tab-name="getCurrentTabName" />
       </div>
     </div>
   </div>
@@ -36,16 +32,14 @@ const { getTabNames, getCurrentTabName, getRootRef, getCurrentClasses, getToggle
 
 <style lang="scss" scoped>
 @import '~/assets/styles/transitionAnimation.scss';
-
+.tab__content {
+  @apply flex flex-col justify-center max-h-[65vh] h-full;
+}
 .tab {
   @apply w-full h-full z-2 self-start;
 }
 
 .tab__toggle {
   @apply w-full py-2 text-center text-white text-2xl;
-}
-
-.tab__content {
-  @apply flex flex-col justify-center max-h-[65vh] h-full;
 }
 </style>
