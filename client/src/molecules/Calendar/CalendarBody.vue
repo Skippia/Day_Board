@@ -2,7 +2,7 @@
 import type { Ref } from 'vue'
 import { daysWeek } from '~/utils/constants'
 const props = defineProps<{
-  isRenderedComponent: boolean
+  isRenderedElement: boolean
   getAmountDaysInCurrentMonth: number
   changeDay: (e: MouseEvent) => void
 }>()
@@ -26,7 +26,7 @@ watch((renderedElement), (renderedEl) => {
       </p>
     </div>
     <Transition name="list" appear mode="out-in">
-      <div v-if="isRenderedComponent" ref="renderedElement" class="data-row">
+      <div v-if="isRenderedElement" ref="renderedElement" class="data-row">
         <p v-for="day in getAmountDaysInCurrentMonth" :key="day" class="data-el" :data-day="day" @click="changeDay">
           {{ day }}
         </p>

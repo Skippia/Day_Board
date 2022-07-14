@@ -1,15 +1,18 @@
 import type { Ref } from 'vue'
 import type { TFilter } from '~/types/types'
 
-const useTrackDatePicker = ({ renderedElement, toggleFilters }:
-{ renderedElement: Ref<HTMLElement | undefined>; toggleFilters: Ref<TFilter[]> }) => {
+const useTrackDatePicker = ({ renderedElement, toggleFilters, storeDayFilter }:
+{
+  renderedElement: Ref<HTMLElement | undefined>
+  toggleFilters: Ref<TFilter[]>
+  storeDayFilter: ReturnType<typeof useStoreDayFilter>
+}) => {
+  const getCurrentDate = computed(() => storeDayFilter.getCurrentDate)
   watch(renderedElement, (renderStatus) => {
-    console.log('rendered')
-
     //* If element was rerendered
     if (renderStatus) {
       //* Check if we back to month where we choose day
-      toggleFilters.value.forEach(toggleFilter => toggleFilter.restoreChosenDay(currentDate))
+      toggleFilters.value.forEach(toggleFilter => toggleFilter.restoreChosenDay(getCurrentDate.value))
     }
   })
 
