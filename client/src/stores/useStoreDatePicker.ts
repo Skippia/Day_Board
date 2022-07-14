@@ -1,19 +1,17 @@
 import { defineStore } from 'pinia'
-import type { IDate, TFilter } from '~/types/types'
+import type { IDate, TFilter, TTask } from '~/types/types'
 
 const todayMonth = {
   month: new Date().getMonth(),
   year: new Date().getFullYear(),
 }
 
-const today = {
-  ...todayMonth, day: new Date().getDate(),
-}
+const today = Date.now()
 
 export const useStoreDatePicker = defineStore({
   id: 'day-picker',
   state: () => ({
-    daysByDate: [] as object[],
+    daysByDate: [] as { listTasks: string[]; completedTasks: TTask[] }[],
     toggleFilters: [] as TFilter[],
     currentDate: todayMonth,
     filterDate: {
@@ -31,13 +29,16 @@ export const useStoreDatePicker = defineStore({
     updateToggleFilters(toggleFilters: TFilter[]) {
       this.toggleFilters = toggleFilters
     },
-    updateFilterDate(filterDate: typeof today[]) {
+    updateFilterDate(filterDate: IDate[]) {
       if (filterDate.length === 1) {
-        this.$state.filterDate.start = this.$state.filterDate.end = filterDate[0]
+        this.$state.filterDate.start = this.$state.filterDate.end = +DATE.convertDate(filterDate[0])
       }
       else if (filterDate.length === 2) {
-        this.$state.filterDate.start = filterDate[0]
-        this.$state.filterDate.end = filterDate[1]
+        const startTempTimestamp = +DATE.convertDate(filterDate[0])
+        const endTempTimestamp = +DATE.convertDate(filterDate[1])
+
+        this.$state.filterDate.start = Math.min(startTempTimestamp, endTempTimestamp)
+        this.$state.filterDate.end = Math.max(startTempTimestamp, endTempTimestamp)
       }
 
       this.filterDataByDate()
@@ -48,7 +49,7 @@ export const useStoreDatePicker = defineStore({
       if (month)
         this.currentDate.month = month
     },
-    filterDataByDate(filterDate?: { start: IDate; end: IDate }) {
+    filterDataByDate(filterDate?: { start: number; end: number }) {
       console.log('...filtering...')
       let startDate = filterDate?.start
       let endDate = filterDate?.end
@@ -59,14 +60,18 @@ export const useStoreDatePicker = defineStore({
       }
 
       //* Update data for current range days
+      // TODO: live validation
       this.loadDaysByDate({
-        start: +convertDate(startDate as IDate),
-        end: +convertDate(endDate as IDate) + 86399999,
+        start: startDate as number,
+        end: endDate as number,
       })
     },
     async loadDaysByDate({ start, end }: { start: number; end: number }) {
-      const additionalUrlParams = `?startDate=${start}&endDate=${end}`
-      console.log(additionalUrlParams)
+      const trueStartDate = DATE.getStartDate(start)
+      const trueEndDate = DATE.getEndDate(end)
+
+      const additionalUrlParams = `?startDate=${trueStartDate}&endDate=${trueEndDate}`
+      console.log('Additional:', additionalUrlParams)
 
       const { data, error } = await apiService.loadDaysByDate(
         {
@@ -74,7 +79,8 @@ export const useStoreDatePicker = defineStore({
         })
 
       if (!error)
-        this.$state.daysByDate = data?.data
+        this.$state.daysByDate = DATE.sortByDateAsc(data?.data) as { date: Date; listTasks: string[]; completedTasks: TTask[] }[]
     },
   },
 })
+

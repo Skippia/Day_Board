@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import type { IUserInfo } from './ServerInterface'
 import { Tooltip } from '~/utils/Tooltip'
 import { apiService } from '~/services/ApiService'
+import type { IUserInfo } from '~/types/types'
 
 export const useStoreAuth = defineStore('auth', {
   state: () => ({

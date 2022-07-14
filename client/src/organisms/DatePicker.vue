@@ -6,7 +6,7 @@ const currentMode = ref<'single' | 'multi'>('single')
 const renderedElement = ref<HTMLElement>()
 
 //* Load today
-storeDatePicker.loadDaysByDate({ start: Date.now(), end: Date.now() })
+storeDatePicker.loadDaysByDate({ start: +new Date(), end: +new Date() })
 
 //* Flag whether the datepicker is loaded and (DOM fn-s & props)
 const { isRenderedElement, getAmountDaysInCurrentMonth, switchNextMonth, switchPreviousMonth }
@@ -91,11 +91,6 @@ watch([currentMode, primaryEdgeDay, additionalEdgeDay], ([currentMode, primaryEd
     </div>
 
     <CalendarFilterMode :initial-current-mode="currentMode" @updateMode="updateFilterMode" />
-
-    <CalendarStats
-      :primary-edge-day="primaryEdgeDay" :additional-edge-day="additionalEdgeDay"
-      :current-mode="currentMode"
-    />
   </div>
 </template>
 

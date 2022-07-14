@@ -1,39 +1,23 @@
 <script setup lang='ts'>
-import { RadarChart, useRadarChart } from 'vue-chart-3'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Chart, registerables } from 'chart.js'
+import { RadarChart, useRadarChart } from 'vue-chart-3'
+
+const props = defineProps<{
+  dataset: number[]
+  labels: string[]
+}>()
+
+const getLabels = computed(() => props.labels)
+const getDataset = computed(() => props.dataset)
+
+//* For radar animation
+let delayed = false
 
 Chart.register(...registerables)
-const toggleLegend = ref(true)
 
-const getRandomDate = () => new Array(17).fill('*').map(el => Math.round(Math.random() * 100))
-
-const randomDate = ref(getRandomDate())
-
-setInterval(() => {
-  // randomDate.value = getRandomDate()
-}, 5000)
-
-const testData = computed<ChartData<'radar'>>(() => ({
-  labels: [
-    'Wake Up',
-    'Write Down Dreams',
-    'HP & LS',
-    '1-st pomidor',
-    '1-st biceps training',
-    'English Grammar',
-    '2-st pomidor',
-    '2-st biceps training',
-    '3-st pomidor',
-    '3-st biceps training',
-    '4-st pomidor',
-    '4-st biceps training',
-    'Second eating',
-    'English Reading',
-    'Blind Typing',
-    'English Walk',
-    'SProgramming',
-  ],
+const radarData = computed<ChartData<'radar'>>(() => ({
+  labels: getLabels.value,
   datasets: [
     {
       label: ' Frequency',
@@ -44,16 +28,14 @@ const testData = computed<ChartData<'radar'>>(() => ({
       pointBackgroundColor: 'rgb(165, 211, 164)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      data: randomDate.value,
+      data: getDataset.value,
     },
   ],
 }))
 
-let delayed = false
-
-const { radarChartProps, radarChartRef } = useRadarChart({
-  chartData: testData,
-  height: 500,
+const { radarChartProps } = useRadarChart({
+  chartData: radarData,
+  height: 600,
   options: {
     responsive: true,
     plugins: {
@@ -85,7 +67,7 @@ const { radarChartProps, radarChartRef } = useRadarChart({
         pointLabels: {
           color: 'rgb(255,255,255,0.9)',
           font: {
-            size: 11,
+            size: 13,
           },
         },
       },
@@ -107,19 +89,8 @@ const { radarChartProps, radarChartRef } = useRadarChart({
 </script>
 
 <template>
-  <div class="w-full h-full">
-    <div style="display: flex; justify-content: center" />
-    <RadarChart v-bind="radarChartProps" />
-  </div>
+  <RadarChart v-bind="radarChartProps" />
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

@@ -77,7 +77,7 @@ const useDateClickListener = ({ activeClasses, condition, primaryFilter, storeDa
       and in case of matching re-activate day (every time during rerendering)  */
 
       // It's our month
-      if (compareDateMY(currentDate, chosenDate)) {
+      if (DATE.compareDateMY(currentDate, chosenDate)) {
       // Init day
         const chosenDay = initDayElement(chosenDate.day) as HTMLElement
         // Paint this day

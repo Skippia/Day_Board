@@ -7,7 +7,7 @@ const router = Router()
 
 router.use(authController.isAuth)
 
-router.post('/create-day/:dateDay', userController.createDay)
+router.post('/create-day/:date', userController.createDay)
 router.get('/get-days', userController.getDays)
 router.get('/get-days-by-date', userController.filterDaysByDate)
 router.get('/get-day/:id', userController.getDayById)

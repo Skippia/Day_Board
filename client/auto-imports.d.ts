@@ -9,15 +9,15 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const ClickAction: typeof import('./src/utils/FireAction')['ClickAction']
+  const DATE: typeof import('./src/utils/date')['DATE']
   const EffectScope: typeof import('vue')['EffectScope']
   const HoverAction: typeof import('./src/utils/HoverAction')['HoverAction']
   const Tooltip: typeof import('./src/utils/Tooltip')['Tooltip']
+  const UTIL: typeof import('./src/utils/reusableFunctions')['UTIL']
   const apiService: typeof import('./src/services/ApiService')['apiService']
   const axiosDayApiInstance: typeof import('./src/utils/apiConfig')['axiosDayApiInstance']
   const baseApiURL: typeof import('./src/utils/constants')['baseApiURL']
-  const compareDateMY: typeof import('./src/utils/date')['compareDateMY']
   const computed: typeof import('vue')['computed']
-  const convertDate: typeof import('./src/utils/date')['convertDate']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
   const daysWeek: typeof import('./src/utils/constants')['daysWeek']
@@ -48,7 +48,6 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
-  const prettyDate: typeof import('./src/utils/date')['prettyDate']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -84,9 +83,6 @@ declare global {
   const useTableHoverAction: typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']
   const useTabs: typeof import('./src/composables/V/useTabs')['useTabs']
   const useTrackDatePicker: typeof import('./src/composables/DatePicker/useTrackDatePicker')['useTrackDatePicker']
-  const utilCreateSelector: typeof import('./src/utils/reusableFunctions')['utilCreateSelector']
-  const utilGetCoordinatesFromElement: typeof import('./src/utils/reusableFunctions')['utilGetCoordinatesFromElement']
-  const utilRefreshRect: typeof import('./src/utils/reusableFunctions')['utilRefreshRect']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -104,15 +100,15 @@ declare module '@vue/runtime-core' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly ClickAction: UnwrapRef<typeof import('./src/utils/FireAction')['ClickAction']>
+    readonly DATE: UnwrapRef<typeof import('./src/utils/date')['DATE']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly HoverAction: UnwrapRef<typeof import('./src/utils/HoverAction')['HoverAction']>
     readonly Tooltip: UnwrapRef<typeof import('./src/utils/Tooltip')['Tooltip']>
+    readonly UTIL: UnwrapRef<typeof import('./src/utils/reusableFunctions')['UTIL']>
     readonly apiService: UnwrapRef<typeof import('./src/services/ApiService')['apiService']>
     readonly axiosDayApiInstance: UnwrapRef<typeof import('./src/utils/apiConfig')['axiosDayApiInstance']>
     readonly baseApiURL: UnwrapRef<typeof import('./src/utils/constants')['baseApiURL']>
-    readonly compareDateMY: UnwrapRef<typeof import('./src/utils/date')['compareDateMY']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
-    readonly convertDate: UnwrapRef<typeof import('./src/utils/date')['convertDate']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly daysWeek: UnwrapRef<typeof import('./src/utils/constants')['daysWeek']>
@@ -143,7 +139,6 @@ declare module '@vue/runtime-core' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
-    readonly prettyDate: UnwrapRef<typeof import('./src/utils/date')['prettyDate']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -179,9 +174,6 @@ declare module '@vue/runtime-core' {
     readonly useTableHoverAction: UnwrapRef<typeof import('./src/composables/CrossTable/useTableHoverAction')['useTableHoverAction']>
     readonly useTabs: UnwrapRef<typeof import('./src/composables/V/useTabs')['useTabs']>
     readonly useTrackDatePicker: UnwrapRef<typeof import('./src/composables/DatePicker/useTrackDatePicker')['useTrackDatePicker']>
-    readonly utilCreateSelector: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilCreateSelector']>
-    readonly utilGetCoordinatesFromElement: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilGetCoordinatesFromElement']>
-    readonly utilRefreshRect: UnwrapRef<typeof import('./src/utils/reusableFunctions')['utilRefreshRect']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
