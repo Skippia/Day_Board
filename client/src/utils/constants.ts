@@ -1,5 +1,5 @@
-// const baseApiURL = 'http://localhost:5000'
-const baseApiURL = 'https://lormida-dayboard.herokuapp.com/'
+const baseApiURL = 'http://localhost:5000'
+// const baseApiURL = 'https://lormida-dayboard.herokuapp.com/'
 
 //* Constants
 const daysWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

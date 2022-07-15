@@ -7,13 +7,18 @@ import createError from 'http-errors'
 import { authRouter } from './src/routers/authRouter.js'
 import { userRouter } from './src/routers/userRouter.js'
 import { adminRouter } from './src/routers/adminRouter.js'
+import path from 'path';
+const __dirname = path.resolve()
 
 const app = express()
 app.use(cookieParser())
 
+
+//*temp
 app.use(helmet())
 app.use(
   cors({
+    // origin: "https://dayboard.netlify.app",
     origin: "http://localhost:3000",
     credentials: true,
   })

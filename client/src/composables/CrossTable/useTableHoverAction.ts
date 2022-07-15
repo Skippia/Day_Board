@@ -1,3 +1,4 @@
+import { HoverAction } from '~/logic/HoverAction'
 import type { TMouseEvent, TRefreshRect } from '~/types/types'
 
 const useTableHoverAction = (
