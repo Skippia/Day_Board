@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Tooltip } from '~/utils/Tooltip'
+import { Tooltip } from '~/logic/Tooltip'
 import { apiService } from '~/services/ApiService'
 import type { IUserInfo } from '~/types/types'
 

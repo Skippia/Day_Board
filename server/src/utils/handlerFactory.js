@@ -10,7 +10,7 @@ const transformObject = (target) =>
 const getAll = ({ model, pathId, filterConfig, isAdmin = true }) =>
   catchAsync(async (req, res, next) => {
     let findOptions = {}
-    console.log('query', req.query);
+    // console.log('query', req.query);
 
     if (filterConfig) {
       filterConfig.forEach(curFilter => {
@@ -33,7 +33,7 @@ const getAll = ({ model, pathId, filterConfig, isAdmin = true }) =>
       findOptions = { ...findOptions, userId }
     }
 
-    console.log('findOptions', findOptions);
+    // console.log('findOptions', findOptions);
     
 
     const data = await model.find(findOptions)
@@ -118,9 +118,9 @@ const createOne = ({ model, pathMergeData, message, isAdmin = true }) =>
     if (pathMergeData) {
       const { type, field } = pathMergeData
       const mergeData = req[type][field]
-      console.log('date: ', mergeData)
+      // console.log('date: ', mergeData)
       resultData = { ...resultData, [field]: mergeData }
-      console.log('result data: ', resultData)
+      // console.log('result data: ', resultData)
     }
 
     if (!isAdmin) {

@@ -8,11 +8,8 @@ declare global {
   const $ref: typeof import('vue/macros')['$ref']
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
-  const ClickAction: typeof import('./src/utils/FireAction')['ClickAction']
   const DATE: typeof import('./src/utils/date')['DATE']
   const EffectScope: typeof import('vue')['EffectScope']
-  const HoverAction: typeof import('./src/utils/HoverAction')['HoverAction']
-  const Tooltip: typeof import('./src/utils/Tooltip')['Tooltip']
   const UTIL: typeof import('./src/utils/reusableFunctions')['UTIL']
   const apiService: typeof import('./src/services/ApiService')['apiService']
   const axiosDayApiInstance: typeof import('./src/utils/apiConfig')['axiosDayApiInstance']
@@ -99,11 +96,8 @@ declare module '@vue/runtime-core' {
     readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
-    readonly ClickAction: UnwrapRef<typeof import('./src/utils/FireAction')['ClickAction']>
     readonly DATE: UnwrapRef<typeof import('./src/utils/date')['DATE']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly HoverAction: UnwrapRef<typeof import('./src/utils/HoverAction')['HoverAction']>
-    readonly Tooltip: UnwrapRef<typeof import('./src/utils/Tooltip')['Tooltip']>
     readonly UTIL: UnwrapRef<typeof import('./src/utils/reusableFunctions')['UTIL']>
     readonly apiService: UnwrapRef<typeof import('./src/services/ApiService')['apiService']>
     readonly axiosDayApiInstance: UnwrapRef<typeof import('./src/utils/apiConfig')['axiosDayApiInstance']>

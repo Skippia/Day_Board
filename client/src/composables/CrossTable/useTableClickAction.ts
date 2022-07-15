@@ -1,3 +1,4 @@
+import { ClickAction } from '~/logic/ClickAction'
 import type { TTask } from '~/types/types'
 
 const useTableClickAction = (
