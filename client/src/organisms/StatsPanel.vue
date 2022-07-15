@@ -18,8 +18,11 @@ const getCurrentTaskAmount = computed(() => dayData.length)
       </p>
     </div>
 
-    <div class="calc-btn button-cyberpunk">
-      Calc today
+    <div class="calc-btn button-cyberpunk" @click="$router.push('/panel')">
+      Panel
+    </div>
+    <div class="calc-btn button-cyberpunk" @click="$router.push('/auth')">
+      Auth
     </div>
   </div>
 </template>
@@ -68,6 +71,6 @@ const getCurrentTaskAmount = computed(() => dayData.length)
 
 .clear-btn,
 .calc-btn {
-  @apply w-4/5 h-[20vh];
+  @apply w-4/5 h-[20vh] duration-300 transition-all hover:cursor-pointer hover:scale-110;
 }
 </style>
