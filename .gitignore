@@ -3,3 +3,6 @@
 **/.lock
 **/.yaml
 **/package-lock.json
+
+**/client/components.d.ts
+**/client/auto-imports.d.ts
