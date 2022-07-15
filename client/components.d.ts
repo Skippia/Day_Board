@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     CrossTableTH: typeof import('./src/atoms/CrossTable/CrossTableTH.vue')['default']
     DatePicker: typeof import('./src/organisms/DatePicker.vue')['default']
     ErrorNotification: typeof import('./src/molecules/V/ErrorNotification.vue')['default']
+    Modal: typeof import('./src/templates/Modal.vue')['default']
     Panel: typeof import('./src/pages/panel/index.vue')['default']
     RadarChart: typeof import('./src/organisms/V/RadarChart.vue')['default']
     RadarWrapper: typeof import('./src/organisms/RadarWrapper.vue')['default']
@@ -31,6 +32,7 @@ declare module '@vue/runtime-core' {
     Undefined: typeof import('./src/pages/index.vue')['default']
     ValidateInput: typeof import('./src/molecules/V/ValidateInput.vue')['default']
     VLabelInput: typeof import('./src/atoms/V/VLabelInput.vue')['default']
+    VModal: typeof import('./src/templates/VModal.vue')['default']
     VTab: typeof import('./src/organisms/V/VTab.vue')['default']
   }
 }
