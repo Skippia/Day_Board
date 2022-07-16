@@ -97,23 +97,22 @@
     transition: all 0.25s ease;
 }
 
-
 .modal-enter-from,
 .modal-leave-to {
-  opacity: 0;
-  transform: scale(0);
+    opacity: 0;
+    transform: scale(0);
 }
 
 .modal-enter-to,
 .modal-leave-from {
-  opacity: 1;
-  transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
 }
 
 .modal-enter-active {
-  transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .modal-leave-active {
-  transition: all 0.25s ease;
+    transition: all 0.25s ease;
 }
