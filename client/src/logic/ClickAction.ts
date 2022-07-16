@@ -1,42 +1,40 @@
 interface IClickAction {
-  isClickElement: (target: HTMLElement) => boolean
-  actionOnClick: Function
-  failurePreCondition?: (...args: any[]) => boolean
-  clickActionWatcher: (e: Event) => void
+    isClickElement: (target: HTMLElement) => boolean
+    actionOnClick: Function
+    failurePreCondition?: (...args: any[]) => boolean
+    clickActionWatcher: (e: Event) => void
 }
 
 class ClickAction implements IClickAction {
-  isClickElement: (target: HTMLElement) => boolean
-  actionOnClick: Function
-  failurePreCondition: (...args: any[]) => boolean
-
-  constructor({
-    isClickElement,
-    actionOnClick,
-    failurePreCondition,
-  }: {
     isClickElement: (target: HTMLElement) => boolean
     actionOnClick: Function
     failurePreCondition: (...args: any[]) => boolean
-  }) {
-    this.isClickElement = isClickElement
-    this.actionOnClick = actionOnClick
-    this.failurePreCondition = failurePreCondition
-  }
 
-  init() {
-    return this.clickActionWatcher.bind(this)
-  }
+    constructor({
+        isClickElement,
+        actionOnClick,
+        failurePreCondition,
+    }: {
+        isClickElement: (target: HTMLElement) => boolean
+        actionOnClick: Function
+        failurePreCondition: (...args: any[]) => boolean
+    }) {
+        this.isClickElement = isClickElement
+        this.actionOnClick = actionOnClick
+        this.failurePreCondition = failurePreCondition
+    }
 
-  clickActionWatcher(e: Event) {
-    const target = e.target as HTMLElement
-    if (!this.isClickElement(target))
-      return
-    if (this.failurePreCondition && this.failurePreCondition(target))
-      return
+    init() {
+        return this.clickActionWatcher.bind(this)
+    }
 
-    this.actionOnClick(target)
-  }
+    clickActionWatcher(e: Event) {
+        const target = e.target as HTMLElement
+        if (!this.isClickElement(target)) return
+        if (this.failurePreCondition && this.failurePreCondition(target)) return
+
+        this.actionOnClick(target)
+    }
 }
 
 export { ClickAction }

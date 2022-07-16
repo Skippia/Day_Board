@@ -1,16 +1,16 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/vue'
-import { fn, vi } from 'vitest'
-import { createTestingPinia } from '@pinia/testing'
-import DatePicker from '~/organisms/DatePicker.vue'
-import TestComponent from '~/pages/test/index.vue'
-import '@testing-library/jest-dom'
+import { fireEvent, render, screen, waitFor } from "@testing-library/vue";
+import { fn, vi } from "vitest";
+import { createTestingPinia } from "@pinia/testing";
+import DatePicker from "~/organisms/DatePicker.vue";
+import TestComponent from "~/pages/test/index.vue";
+import "@testing-library/jest-dom";
 
 // setActivePinia(createPinia())
 
-describe('Data Picker', () => {
+describe("Data Picker", () => {
   beforeEach(() => {
-    render(TestComponent)
-  })
+    render(TestComponent);
+  });
   /*  it('primary loading (single mode by default)', async () => {
     const { getByTestId } = render(DatePicker, { global: { plugins: [createTestingPinia({ createSpy: fn })] } })
 
@@ -50,4 +50,4 @@ describe('Data Picker', () => {
   // it('multi different months', async () => {
 
   // })
-})
+});

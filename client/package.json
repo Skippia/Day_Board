@@ -21,7 +21,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.25.2",
     "@iconify-json/carbon": "^1.1.6",
     "@iconify-json/mdi": "^1.1.25",
     "@iconify/json": "^2.1.73",
@@ -31,12 +30,19 @@
     "@types/jest": "^28.1.4",
     "@types/jsdom": "^16.2.14",
     "@types/node": "^16.11.41",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
     "@unocss/reset": "^0.42.1",
     "@unocss/transformer-directives": "^0.42.1",
     "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/test-utils": "^2.0.0",
-    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.2.0",
     "jsdom": "^20.0.0",
+    "prettier": "^2.7.1",
     "sass": "^1.53.0",
     "typescript": "~4.7.4",
     "unocss": "^0.42.0",
@@ -45,9 +51,7 @@
     "vite": "^2.9.12",
     "vite-plugin-pages": "^0.25.0",
     "vitest": "^0.15.1",
+    "vue-eslint-parser": "^9.0.3",
     "vue-tsc": "^0.38.1"
-  },
-  "eslintConfig": {
-    "extends": "@antfu"
   }
 }

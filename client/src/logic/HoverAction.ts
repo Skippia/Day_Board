@@ -1,52 +1,50 @@
 interface IHoverOnElement {
-  isHoverElement: (target: HTMLElement) => boolean
-  actionOnHover: Function
-  failurePreCondition?: (...args: any[]) => boolean
-  hoverActionWatcher: (e: Event) => void
-}
-
-class HoverAction implements IHoverOnElement {
-  isHoverElement: (target: HTMLElement) => boolean
-  actionOnHover: Function
-  failurePreCondition: undefined | ((...args: any[]) => boolean)
-
-  constructor({
-    initHoverOnElement,
-    isHoverElement,
-    actionOnHover,
-    failurePreCondition,
-  }: {
-    initHoverOnElement: Function
     isHoverElement: (target: HTMLElement) => boolean
     actionOnHover: Function
     failurePreCondition?: (...args: any[]) => boolean
-  }) {
-    if (initHoverOnElement) {
-      // If there is initial action - to run it
-      initHoverOnElement()
+    hoverActionWatcher: (e: Event) => void
+}
+
+class HoverAction implements IHoverOnElement {
+    isHoverElement: (target: HTMLElement) => boolean
+    actionOnHover: Function
+    failurePreCondition: undefined | ((...args: any[]) => boolean)
+
+    constructor({
+        initHoverOnElement,
+        isHoverElement,
+        actionOnHover,
+        failurePreCondition,
+    }: {
+        initHoverOnElement: Function
+        isHoverElement: (target: HTMLElement) => boolean
+        actionOnHover: Function
+        failurePreCondition?: (...args: any[]) => boolean
+    }) {
+        if (initHoverOnElement) {
+            // If there is initial action - to run it
+            initHoverOnElement()
+        }
+        this.isHoverElement = isHoverElement
+        this.actionOnHover = actionOnHover
+        this.failurePreCondition = failurePreCondition
     }
-    this.isHoverElement = isHoverElement
-    this.actionOnHover = actionOnHover
-    this.failurePreCondition = failurePreCondition
-  }
 
-  init() {
-    return this.hoverActionWatcher.bind(this)
-  }
+    init() {
+        return this.hoverActionWatcher.bind(this)
+    }
 
-  hoverActionWatcher(e: Event) {
-    const target = e.target as HTMLElement
+    hoverActionWatcher(e: Event) {
+        const target = e.target as HTMLElement
 
-    // Check if it is hover element
-    if (!this.isHoverElement(target))
-      return
+        // Check if it is hover element
+        if (!this.isHoverElement(target)) return
 
-    // Check and whether is possible - start action process
-    if (this.failurePreCondition && this.failurePreCondition(target))
-      return
+        // Check and whether is possible - start action process
+        if (this.failurePreCondition && this.failurePreCondition(target)) return
 
-    this.actionOnHover(target)
-  }
+        this.actionOnHover(target)
+    }
 }
 
 export { HoverAction }
