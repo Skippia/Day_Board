@@ -1,5 +1,5 @@
 import { ClickAction } from '~/logic/ClickAction'
-import type { TTask } from '~/types/types'
+import type { TTask, FlexFunction } from '~/types/types'
 
 const useTableClickAction = ({
     isClickElement,
@@ -9,10 +9,10 @@ const useTableClickAction = ({
 }: {
     isClickElement: (target: HTMLElement) => boolean
     generateColor: () => string
-    updateCurrentDay: Function
+    updateCurrentDay: FlexFunction
     currentList: TTask[]
 }) => {
-    const changeCurrentTaskAmount = (generateColor: () => string, updateCurrentDay: Function) => {
+    const changeCurrentTaskAmount = (generateColor: () => string, updateCurrentDay: FlexFunction) => {
         return (target: HTMLElement, isComplete: boolean) => {
             //* If task is completed - paint it and update current list
             if (isComplete) {
@@ -45,7 +45,7 @@ const useTableClickAction = ({
         }
     }
 
-    const createActionOnClickTableCell = (callback: Function) => {
+    const createActionOnClickTableCell = (callback: FlexFunction) => {
         return (target: HTMLElement) => {
             const taskIsAlreadyCompleted = target.style.backgroundColor === 'rgb(34, 197, 94)'
 

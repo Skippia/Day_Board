@@ -1,5 +1,5 @@
-import type { AxiosInstance } from 'axios'
-import type { TNetworkMethod } from '~/types/types'
+import { AxiosError, AxiosInstance } from 'axios'
+import type { FlexFunction, TNetworkMethod } from '~/types/types'
 
 const useFetch = ({
     url,
@@ -19,12 +19,15 @@ const useFetch = ({
 
         try {
             if (method === 'get') data = await apiConfig.get(resultUrl, { ...additionalReqOptions })
-            else if (method === 'post' && body)
+            else if (method === 'post' && body) {
                 data = await apiConfig.post(resultUrl, { ...body }, { ...additionalReqOptions })
+            }
 
             data = data?.data
-        } catch (e: any) {
-            error = e?.response?.data?.message
+        } catch (e: unknown) {
+            if (e instanceof AxiosError && e.response) {
+                error = e.response.data.message
+            }
         }
         return { data, error }
     }
@@ -32,10 +35,10 @@ const useFetch = ({
 
 class ApiService {
     apiConfig: AxiosInstance
-    login: Function
-    loadAllPageData: Function
-    createDay: Function
-    loadDaysByDate: Function
+    login: FlexFunction
+    loadAllPageData: FlexFunction
+    createDay: FlexFunction
+    loadDaysByDate: FlexFunction
 
     constructor(apiConfig: AxiosInstance) {
         this.apiConfig = apiConfig

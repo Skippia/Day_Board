@@ -14,7 +14,7 @@ interface TTask {
     taskContent: string
     timeTask: string
 }
-type TFunctionCondition = (...args: any[]) => boolean
+type TFunctionCondition = FlexFunction<boolean>
 
 interface IMapperForCrossTable {
     elements: string[]
@@ -48,6 +48,9 @@ interface TRefreshRect {
 }
 type TMouseEvent = (e: MouseEvent) => void
 
+// @typescript-eslint/no-explicit-any
+type FlexFunction<R = void> = (...args: any[]) => R
+
 interface IFullDate {
     day: number
     month: number
@@ -67,4 +70,5 @@ export type {
     TFilter,
     TMouseEvent,
     IFullDate,
+    FlexFunction,
 }

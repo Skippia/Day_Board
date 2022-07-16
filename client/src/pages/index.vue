@@ -2,20 +2,27 @@
     import { useModal } from '~/logic/useModal'
 
     const StoreUser = useStoreUser()
-
     const searcherTds = () => [...document.querySelectorAll('td')].filter((el) => !el.classList.contains('time'))
     const searcherTable = () => document.querySelector('table')
     const isTableCell = UTIL.createSelector({ tagName: 'td' })
 
     const { yMapper, xMapper, times, tasks, currentList } = useInitCrossTableValues(StoreUser)
 
-    const { generateColor } = useGenerateColor({
-        rangeTransparency: [0, 70],
-        colorTransparency: [0, 30],
-    })
+    const { generateColor } = useGenerateColor({ rangeTransparency: [0, 70], colorTransparency: [0, 30] })
 
     //* To paint table cells by selector
     usePaintTableCell({ searcher: searcherTds, generateColor })
+
+    //* Get click listener
+    const { clickActionOnTableCell } = useTableClickAction({
+        isClickElement: isTableCell,
+        generateColor,
+        updateCurrentDay: StoreUser.updateCurrentDay,
+        currentList,
+    })
+
+    //* Get hover listener
+    const { hoverActionOnTableCell } = useTableHoverAction({ searcherTable, isHoverElement: isTableCell })
 
     onMounted(() => {
         //* Upload data

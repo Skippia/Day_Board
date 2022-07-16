@@ -1,14 +1,16 @@
+import { FlexFunction } from '~/types/types'
+
 interface IClickAction {
     isClickElement: (target: HTMLElement) => boolean
-    actionOnClick: Function
-    failurePreCondition?: (...args: any[]) => boolean
+    actionOnClick: FlexFunction
+    failurePreCondition?: FlexFunction<boolean>
     clickActionWatcher: (e: Event) => void
 }
 
 class ClickAction implements IClickAction {
     isClickElement: (target: HTMLElement) => boolean
-    actionOnClick: Function
-    failurePreCondition: (...args: any[]) => boolean
+    actionOnClick: FlexFunction
+    failurePreCondition: FlexFunction<boolean>
 
     constructor({
         isClickElement,
@@ -16,8 +18,8 @@ class ClickAction implements IClickAction {
         failurePreCondition,
     }: {
         isClickElement: (target: HTMLElement) => boolean
-        actionOnClick: Function
-        failurePreCondition: (...args: any[]) => boolean
+        actionOnClick: FlexFunction
+        failurePreCondition: FlexFunction<boolean>
     }) {
         this.isClickElement = isClickElement
         this.actionOnClick = actionOnClick

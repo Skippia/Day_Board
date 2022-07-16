@@ -17,5 +17,8 @@ module.exports = {
         'no-undef': 'off',
         'prettier/prettier': 'error',
         'vue/multi-word-component-names': 'off',
+        'no-empty-function': 'off',
+        '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
+        '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
     },
 }

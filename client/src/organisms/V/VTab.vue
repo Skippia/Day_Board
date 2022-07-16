@@ -1,12 +1,11 @@
 <script setup lang="ts">
-    const props = defineProps({
-        tabData: {
-            type: Array<{ tabName: string; componentName: string }>,
-            required: true,
-        },
-        activeToggleClasses: { type: Array<string>, required: true },
-        passiveToggleClasses: { type: Array<string>, required: true },
-    })
+    interface IPropsTab {
+        tabData: { tabName: string; componentName: string }[]
+        activeToggleClasses: string[]
+        passiveToggleClasses: string[]
+    }
+
+    const props = defineProps<IPropsTab>()
 
     const overflowControl = ref<HTMLElement>()
     //* It's time animation for fade transition

@@ -1,6 +1,12 @@
 import type { VNodeRef } from 'vue'
 
-const useTabs = (props: any) => {
+interface IPropsTab {
+    tabData: { tabName: string; componentName: string }[]
+    activeToggleClasses: string[]
+    passiveToggleClasses: string[]
+}
+
+const useTabs = (props: IPropsTab) => {
     //* Select part
     const selected = ref(0)
     const select = (index: number) => {
