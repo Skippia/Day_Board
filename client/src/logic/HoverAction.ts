@@ -1,14 +1,16 @@
+import { FlexFunction } from '~/types/types'
+
 interface IHoverOnElement {
     isHoverElement: (target: HTMLElement) => boolean
-    actionOnHover: Function
-    failurePreCondition?: (...args: any[]) => boolean
+    actionOnHover: FlexFunction
+    failurePreCondition?: FlexFunction<boolean>
     hoverActionWatcher: (e: Event) => void
 }
 
 class HoverAction implements IHoverOnElement {
     isHoverElement: (target: HTMLElement) => boolean
-    actionOnHover: Function
-    failurePreCondition: undefined | ((...args: any[]) => boolean)
+    actionOnHover: FlexFunction
+    failurePreCondition: undefined | FlexFunction<boolean>
 
     constructor({
         initHoverOnElement,
@@ -16,10 +18,10 @@ class HoverAction implements IHoverOnElement {
         actionOnHover,
         failurePreCondition,
     }: {
-        initHoverOnElement: Function
+        initHoverOnElement: FlexFunction
         isHoverElement: (target: HTMLElement) => boolean
-        actionOnHover: Function
-        failurePreCondition?: (...args: any[]) => boolean
+        actionOnHover: FlexFunction
+        failurePreCondition?: FlexFunction<boolean>
     }) {
         if (initHoverOnElement) {
             // If there is initial action - to run it

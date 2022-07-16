@@ -22,7 +22,7 @@ const useTableHoverAction = ({
         }
     }
 
-    //* Function will be runned during first binding event to the target
+    //* FlexFunction will be runned during first binding event to the target
     const createHoverRect = (rootElement: HTMLElement) => {
         return () => {
             const hoverRect = document.createElement('div') as HTMLElement
@@ -35,7 +35,7 @@ const useTableHoverAction = ({
 
             hoverRect.style.transitionProperty = 'all'
             hoverRect.style.transitionDuration = '0.15s'
-            hoverRect.style.transitionTimingFunction = 'ease-out'
+            hoverRect.style.transitionTimingFlexFunction = 'ease-out'
 
             hoverRect.style.pointerEvents = 'none'
 

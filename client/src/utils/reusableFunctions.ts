@@ -13,11 +13,11 @@ const UTIL = {
     },
     refreshRect: ({ rect, targetCoordinates }: TRefreshRect): void => {
         const { x: xStart, y: yStart, width, height } = targetCoordinates
-        rect!.style.left = rect!.style.top = '0'
-        rect!.style.width = `${xStart + width}px`
-        rect!.style.height = `${yStart + height}px`
-        rect!.style.borderBottomWidth = `${height}px`
-        rect!.style.borderRightWidth = `${width}px`
+        rect.style.left = rect.style.top = '0'
+        rect.style.width = `${xStart + width}px`
+        rect.style.height = `${yStart + height}px`
+        rect.style.borderBottomWidth = `${height}px`
+        rect.style.borderRightWidth = `${width}px`
     },
     getAverageVal: (array: number[]) => array.reduce((acc, cur) => acc + cur, 0) / array.length,
 }
