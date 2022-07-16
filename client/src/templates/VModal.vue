@@ -40,12 +40,12 @@
     .modal {
         @apply flex flex-col absolute left-1/2 top-1/2 min-w-1/2 min-h-1/2 rounded-2xl;
         transform: translate(-50%, -50%);
-        background: rgba(222, 222, 222, 0.5);
-        box-shadow: rgba(217, 205, 240, 0.5) 0px 20px 30px -10px;
+        background-color: rgba(212, 210, 215, 0.3);
+        box-shadow: rgba(241, 241, 241, 0.5) 0px 20px 30px -10px;
     }
 
     .modal__header {
-        @apply flex justify-center items-center border-2 border-black h-20;
+        @apply flex justify-center items-center min-h-20;
     }
 
     .modal__content {
@@ -53,6 +53,6 @@
         flex: 1 0 0;
     }
     .modal__close {
-        @apply text-black absolute right-3;
+        @apply text-black absolute top-3 right-3 border-white/60 border-2 rounded-full;
     }
 </style>
