@@ -34,7 +34,7 @@
 
 <template>
     <div class="home black-gradient">
-        <CrossTable
+        <VCrossTable
             ref="table"
             class="w-[85%]"
             :x-mapper="xMapper"
@@ -55,21 +55,29 @@
             <template #tdData="{ xyElement }">
                 {{ xyElement }}
             </template>
-        </CrossTable>
+        </VCrossTable>
 
         <StatsPanel class="w-[15%]" :tasks="tasks" :times="times" :current-list="currentList" />
         <Teleport to="body">
             <VModal :is-open="isOpen" :open-modal="openModal" :close-modal="closeModal">
                 <template #header>
-                    <p class="text-black font-medium">Welcome to new template!</p>
+                    <div class="flex flex-col items-center">
+                        <p class="text-white/50 text-4xl font-bold my-4">Welcome to new template!</p>
+                        <p class="text-white/70 text-2xl font-medium">
+                            Looks like you don’t have an active template...
+                        </p>
+                        <p class="text-white/90 text-2xl border-t-2 border-b-2 border-neutral-500 font-medium">
+                            ...it’s time to create one!
+                        </p>
+                        <span class="i-carbon:calendar-heat-map opacity-50 my-3 text-6xl"></span>
+                    </div>
                 </template>
                 <template #close>
                     <div class="i-carbon:close close-btn" />
                 </template>
                 <template #content>
-                    <div class="bg-emerald-300 p-4 flex flex-col items-center justify-center w-full">
-                        <div class="text-white text-4xl">Hello! I'm content</div>
-                        <div class="w-1/2 bg-red-300 h-20" />
+                    <div class="flex flex-col items-center w-full">
+                        <button class="button-create type1">Create new template</button>
                     </div>
                 </template>
             </VModal>
@@ -86,6 +94,8 @@
 </template>
 
 <style lang="scss" scoped>
+    // Variables
+    $color1: white;
     .home {
         @apply bg-no-repeat min-h-screen min-w-full flex p-2;
     }
@@ -95,6 +105,61 @@
     }
 
     .close-btn {
-        @apply text-black/70 text-6xl duration-300 hover:rotate-[45deg] hover:scale-120 hover:cursor-pointer hover:text-black;
+        @apply text-white/60 text-5xl duration-300 hover:rotate-[45deg] hover:scale-120 hover:cursor-pointer hover:text-white;
+    }
+
+    .button-create {
+        position: relative;
+        padding: 1em 2em;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        font-size: 25px;
+        margin: 1em 0.8em;
+        color: $color1;
+        transition: all 0.6s ease-out;
+        font-weight: 500;
+
+        &:hover {
+            color: #222;
+        }
+
+        &::after,
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border: 2px solid;
+            transition: all 0.6s ease;
+            border-radius: 2px;
+        }
+
+        &::after {
+            bottom: 0;
+            right: 0;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: $color1;
+            border-right-color: $color1;
+        }
+        &::before {
+            top: 0;
+            left: 0;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            border-top-color: $color1;
+            border-left-color: $color1;
+        }
+
+        &:hover:after,
+        &:hover:before {
+            width: 100%;
+            height: 100%;
+            z-index: -20;
+            background-color: rgba(222, 222, 222, 0.5);
+        }
     }
 </style>
