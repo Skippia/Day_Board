@@ -38,6 +38,7 @@ class HoverAction implements IHoverOnElement {
 
     hoverActionWatcher(e: Event) {
         const target = e.target as HTMLElement
+        console.log(target)
 
         // Check if it is hover element
         if (!this.isHoverElement(target)) return

@@ -35,7 +35,7 @@ const useTableHoverAction = ({
 
             hoverRect.style.transitionProperty = 'all'
             hoverRect.style.transitionDuration = '0.15s'
-            hoverRect.style.transitionTimingFlexFunction = 'ease-out'
+            hoverRect.style.transitionTimingFunction = 'ease-out'
 
             hoverRect.style.pointerEvents = 'none'
 

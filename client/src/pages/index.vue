@@ -41,7 +41,7 @@
             :y-mapper="yMapper"
             :th-root-horizontal-classes="['rotate-transform', 'border-r-2', 'border-b-2']"
             :th-root-vertical-classes="['border-r-2', 'px-3']"
-            @mouseover="hoverActionOnTableCell;"
+            @mouseover="hoverActionOnTableCell"
             @click="clickActionOnTableCell"
         >
             <template #thHorizontal="{ xElement }">
