@@ -1,10 +1,10 @@
 <script setup lang="ts">
     const props = defineProps({
-        width: {
+        maxWidth: {
             type: String,
             default: '90%',
         },
-        height: {
+        maxHeight: {
             type: String,
             default: '90%',
         },
@@ -17,9 +17,10 @@
 
 <template>
     <div class="constructor-overlay">
-        <div class="constructor-overlay__content">
+        <div class="constructor-overlay__content rounded-2xl">
             <slot></slot>
         </div>
+        <button class="button-create-template mt-5">Save template</button>
     </div>
 </template>
 
@@ -29,8 +30,21 @@
     }
 
     .constructor-overlay__content {
-        width: v-bind(width);
-        height: v-bind(height);
+        border: 1px solid #fff;
+        width: fit-content;
+        overflow: auto;
+        max-width: v-bind(maxWidth);
+        max-height: v-bind(maxHeight);
         background-color: v-bind(bgColor);
+    }
+    .button-create-template {
+        background: #2b2d2f;
+        text-align: center;
+        cursor: pointer;
+        padding: 20px 40px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 35px;
+        color: #71dfbe;
     }
 </style>
