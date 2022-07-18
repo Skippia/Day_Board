@@ -41,7 +41,7 @@
             :y-mapper="yMapper"
             :th-root-horizontal-classes="['rotate-transform', 'border-r-2', 'border-b-2']"
             :th-root-vertical-classes="['border-r-2', 'px-3']"
-            @mouseover="hoverActionOnTableCell;"
+            @mouseover="hoverActionOnTableCell"
             @click="clickActionOnTableCell"
         >
             <template #thHorizontal="{ xElement }">
@@ -77,19 +77,13 @@
                 </template>
                 <template #content>
                     <div class="flex flex-col items-center w-full">
-                        <button class="button-create type1">Create new template</button>
+                        <button @click="$router.push('/constructor')" class="btn-create-template type1">
+                            Create new template
+                        </button>
                     </div>
                 </template>
             </VModal>
         </Teleport>
-        <!-- <div>
-      <button p-5 text-black bg-indigo-300 @click="openModal">
-        OPEN
-      </button>
-      <button p-5 text-black bg-yellow-300 @click="closeModal">
-        CLOSE
-      </button>
-    </div> -->
     </div>
 </template>
 
@@ -108,7 +102,7 @@
         @apply text-white/60 text-5xl duration-300 hover:rotate-[45deg] hover:scale-120 hover:cursor-pointer hover:text-white;
     }
 
-    .button-create {
+    .btn-create-template {
         position: relative;
         padding: 1em 2em;
         border: none;
