@@ -9,6 +9,7 @@ import 'uno.css'
 
 import './assets/styles/base.scss'
 import './assets/styles/ui.scss'
+import '~/assets/styles/animation.scss'
 
 const app = createApp(App)
 

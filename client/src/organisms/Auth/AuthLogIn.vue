@@ -6,8 +6,8 @@
 </script>
 
 <template>
-    <div class="auth">
-        <h1 class="auth__header">Log In</h1>
+    <div class="auth-content__container">
+        <v-sub-title>Log In</v-sub-title>
         <Form
             name="login"
             class="auth__form"
@@ -15,7 +15,7 @@
             @submit="onSubmit"
             @invalid-submit="onInvalidSubmit"
         >
-            <ValidateInput
+            <v-validate-form-input
                 v-for="input in inputFormData"
                 :key="input.placeholder"
                 :placeholder="input.placeholder"
@@ -26,13 +26,16 @@
                 success-message="Nice and secure!"
             />
 
-            <button class="submit-btn" type="submit">Login</button>
+            <v-button my-3 color="#76c893" type="submit">LogIn</v-button>
         </Form>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .submit-btn:focus {
-        outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+    .auth-content__container {
+        @apply flex flex-col items-center;
+    }
+    .auth {
+        @apply h-full w-full flex flex-col justify-center;
     }
 </style>

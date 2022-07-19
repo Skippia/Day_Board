@@ -6,7 +6,7 @@ const { Schema, model } = mongoose
 const schemaDay = new Schema({
   listTasks: {
     type: [String],
-    required: [true, 'listTask is required field'],
+    required: [true, 'lisITask is required field'],
   },
   listTimes: {
     type: [String],

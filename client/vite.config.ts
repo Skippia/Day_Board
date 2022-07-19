@@ -44,12 +44,11 @@ export default defineConfig({
       dirs: [
         "./src/stores",
         "./src/utils",
-        "./src/services",
         "./src/composables",
-        "./src/composables/CrossTable",
-        "./src/composables/DatePicker",
         "./src/composables/Auth",
+        "./src/composables/DatePicker",
         "./src/composables/V",
+        "./src/composables/XTable",
       ],
       vueTemplate: true,
       eslintrc: {

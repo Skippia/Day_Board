@@ -1,31 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    const taskValue = ref('')
+</script>
 
 <template>
-    <div class="wrapper">
-        <div class="constructor__tasks">
-            <h1 class="constructor__tasks-title subtitle">Tasks constructor</h1>
-            <p class="text-2xl opacity-70 mt-6">Add task</p>
-            <div class="flex items-center gap-5">
-                <VInput
+    <div class="c-tasks-module__container">
+        <v-sub-title underline>Task constructor</v-sub-title>
+        <div class="c-tasks-module__add-task">
+            <v-sub-title font-size="20px" opacity-70>Add task</v-sub-title>
+            <div class="c-tasks-module__add-task-input">
+                <v-input
                     type="text"
-                    :classes="'time__separator bg-neutral-500/20 border-slate-200'"
                     name="new-task"
                     placeholder="Task name..."
+                    :classes="'bg-neutral-500/20 border-slate-200'"
+                    v-model="taskValue"
                 />
-                <span
-                    class="i-carbon-add-alt text-white/50 duration-300 hover:cursor-pointer hover:text-white text-5xl"
-                ></span>
+                <v-icon font-size="50px" icon-class="i-carbon-add-alt"></v-icon>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .wrapper {
-        @apply flex flex-col border-2 p-5;
+    .c-tasks-module__container {
+        @apply flex flex-col gap-4 border-2 p-5;
     }
-    .time__separator {
-        width: fit-content;
-        @apply text-white p-2 text-xl font-medium p-2 rounded shadow-md text-white;
+    .c-tasks-module__add-task {
+        @apply flex flex-col items-start;
+    }
+    .c-tasks-module__add-task-input {
+        @apply flex items-center gap-2;
     }
 </style>

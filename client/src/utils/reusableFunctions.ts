@@ -1,4 +1,4 @@
-import type { TRefreshRect } from '~/types/types'
+import type { IRefreshRect } from '~/types/types'
 
 const UTIL = {
     getCoordinatesFromElement: (element: HTMLElement) => element.getBoundingClientRect(),
@@ -11,7 +11,7 @@ const UTIL = {
             else return false
         }
     },
-    refreshRect: ({ rect, targetCoordinates }: TRefreshRect): void => {
+    refreshRect: ({ rect, targetCoordinates }: IRefreshRect): void => {
         const { x: xStart, y: yStart, width, height } = targetCoordinates
         rect.style.left = rect.style.top = '0'
         rect.style.width = `${xStart + width}px`

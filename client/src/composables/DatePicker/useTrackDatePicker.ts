@@ -1,6 +1,6 @@
 // ? Imperative shell
 import type { Ref } from 'vue'
-import type { TFilter } from '~/types/types'
+import type { IFilter } from '~/types/types'
 
 const useTrackDatePicker = ({
     renderedElement,
@@ -8,7 +8,7 @@ const useTrackDatePicker = ({
     storeDatePicker,
 }: {
     renderedElement: Ref<HTMLElement | undefined>
-    toggleFilters: Ref<TFilter[]>
+    toggleFilters: Ref<IFilter[]>
     storeDatePicker: ReturnType<typeof useStoreDatePicker>
 }) => {
     const getCurrentDate = computed(() => storeDatePicker.getCurrentDate)

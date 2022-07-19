@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { TTask } from '~/types/types'
+import type { ITask } from '~/types/types'
 
 export const useStoreUser = defineStore('user', {
     state: () => ({
@@ -42,24 +42,26 @@ export const useStoreUser = defineStore('user', {
             '22:00 - 22:30',
             '22:30 - 00:00',
         ] as string[],
-        dayData: {} as TTask[],
+        dayData: {} as ITask[],
     }),
     getters: {
         getTimes: (state) => state.times,
-        getTasks: (state) => state.tasks,
+        geITasks: (state) => state.tasks,
         getDayData: (state) => state.dayData,
     },
     actions: {
-        updateCurrentDay(items: Array<TTask>) {
+        updateCurrentDay(items: Array<ITask>) {
             localStorage.setItem('items', JSON.stringify(items))
         },
-        restoreCurrentDay(items: Array<TTask>) {
-            items.forEach((el: TTask) => {
+        restoreCurrentDay(items: Array<ITask>) {
+            items.forEach((el: ITask) => {
                 const td = document.querySelector(
                     `[data-time="${el.timeTask}"][data-task="${el.taskContent}"]`
                 ) as HTMLElement
                 setTimeout(() => {
-                    td.style.backgroundColor = 'rgb(34,197,94)'
+                    if (td) {
+                        td.style.backgroundColor = 'rgb(34,197,94)'
+                    }
                 }, 0)
             })
         },

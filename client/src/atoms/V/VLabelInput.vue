@@ -2,8 +2,13 @@
     interface Props {
         name: string
         label: string
+        fontSize?: string
+        color?: string
     }
-    const props = defineProps<Props>()
+    const props = withDefaults(defineProps<Props>(), {
+        fontSize: '14px',
+        color: 'rgba(209, 213, 219)',
+    })
 </script>
 
 <template>
@@ -12,6 +17,6 @@
 
 <style lang="scss" scoped>
     .label-input {
-        @apply self-start text-gray-300 font-bold text-sm;
+        @apply self-start font-bold;
     }
 </style>

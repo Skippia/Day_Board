@@ -7,16 +7,15 @@ interface IDate {
 interface IDeskDayData {
     listTasks: string[]
     listTimes: string[]
-    completedTasks: TTask[]
+    completedTasks: ITask[]
 }
 
-interface TTask {
+interface ITask {
     taskContent: string
     timeTask: string
 }
-type TFunctionCondition = FlexFunction<boolean>
 
-interface IMapperForCrossTable {
+interface IMapperForXTable {
     elements: string[]
     attributeNameTh: string
     attributeNameTd: string
@@ -31,7 +30,7 @@ interface IUserInfo {
     role: TUserRole
 }
 
-interface TFilter {
+interface IFilter {
     init: (() => void) | undefined
     run: (e: MouseEvent) => void
     condition: (e: MouseEvent) => boolean
@@ -39,36 +38,51 @@ interface TFilter {
     beforeRemove: (() => void) | undefined
 }
 
-type TUserGender = 'MALE' | 'FEMALE'
-type TUserRole = 'USER' | 'ADMIN'
-type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
-interface TRefreshRect {
+interface IRefreshRect {
     rect: HTMLElement
     targetCoordinates: DOMRect
 }
-type TMouseEvent = (e: MouseEvent) => void
-
-// @typescript-eslint/no-explicit-any
-type FlexFunction<R = void> = (...args: any[]) => R
 
 interface IFullDate {
     day: number
     month: number
     year: number
 }
+
+type IResponse = ({
+    body,
+    additionalUrlParams,
+}: {
+    body?: object
+    additionalUrlParams?: string
+}) => Promise<{ data?: any; error?: IResponseError }>
+
+type IResponseError = {
+    message: string
+    status: number
+}
+type TUserGender = 'MALE' | 'FEMALE'
+type TUserRole = 'USER' | 'ADMIN'
+type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
+type TMouseEvent = (e: MouseEvent) => void
+type TFunctionCondition = TFlexFunction<boolean>
+type TFlexFunction<R = void> = (...args: any[]) => R
+
 export type {
+    ITask,
     IUserInfo,
-    TUserGender,
-    TUserRole,
-    TFunctionCondition,
-    IMapperForCrossTable,
-    IDeskDayData,
-    TTask,
     IDate,
-    TNetworkMethod,
-    TRefreshRect,
-    TFilter,
-    TMouseEvent,
     IFullDate,
-    FlexFunction,
+    IFilter,
+    IResponseError,
+    IMapperForXTable,
+    IDeskDayData,
+    IResponse,
+    TUserRole,
+    TUserGender,
+    TFunctionCondition,
+    IRefreshRect,
+    TFlexFunction,
+    TMouseEvent,
+    TNetworkMethod,
 }
