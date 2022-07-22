@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import type { IDate, TFilter, TTask } from '~/types/types'
+import { apiUser } from '~/API/ApiUser'
+import type { IDate, IFilter, ITask } from '~/types/types'
 
 const todayMonth = {
     month: new Date().getMonth(),
@@ -11,8 +12,8 @@ const today = Date.now()
 export const useStoreDatePicker = defineStore({
     id: 'day-picker',
     state: () => ({
-        daysByDate: [] as { listTasks: string[]; completedTasks: TTask[] }[],
-        toggleFilters: [] as TFilter[],
+        daysByDate: [] as { listTasks: string[]; completedTasks: ITask[] }[],
+        toggleFilters: [] as IFilter[],
         currentDate: todayMonth,
         filterDate: {
             start: today,
@@ -26,7 +27,7 @@ export const useStoreDatePicker = defineStore({
         getCurrentDate: (state) => state.currentDate,
     },
     actions: {
-        updateToggleFilters(toggleFilters: TFilter[]) {
+        updateToggleFilters(toggleFilters: IFilter[]) {
             this.toggleFilters = toggleFilters
         },
         updateFilterDate(filterDate: IDate[]) {
@@ -70,7 +71,7 @@ export const useStoreDatePicker = defineStore({
             const additionalUrlParams = `?startDate=${trueStartDate}&endDate=${trueEndDate}`
             console.log('Additional:', additionalUrlParams)
 
-            const { data, error } = await apiService.loadDaysByDate({
+            const { data, error } = await apiUser.loadDaysByDate({
                 additionalUrlParams,
             })
 
@@ -78,7 +79,7 @@ export const useStoreDatePicker = defineStore({
                 this.$state.daysByDate = DATE.sortByDateAsc(data?.data) as {
                     date: Date
                     listTasks: string[]
-                    completedTasks: TTask[]
+                    completedTasks: ITask[]
                 }[]
         },
     },

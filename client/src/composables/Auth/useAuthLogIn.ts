@@ -1,5 +1,7 @@
 import type { Router } from 'vue-router'
 import * as Yup from 'yup'
+import { Tooltip } from '~/logic/Tooltip'
+import { IResponseError } from '~/types/types'
 
 const storeAuth = useStoreAuth()
 
@@ -24,10 +26,16 @@ const useAuthLogIn = (router: Router) => {
         storeAuth
             // @ts-expect-error really is
             .login({ email: values?.email, password: values?.password })
-            .then((successLogin: boolean) => {
-                if (successLogin) {
+            .then(({ error, successMessage }: { error?: IResponseError; successMessage?: string }) => {
+                Tooltip.run({
+                    error: !!error,
+                    messageSuccess: successMessage,
+                    messageFail: error?.message,
+                })
+
+                if (!error) {
                     setTimeout(() => {
-                        router.push('/panel')
+                        router.push('/stats-day')
                     }, 1125)
                 }
             })

@@ -1,9 +1,10 @@
-import type { TTask } from '~/types/types'
+import type { ITask } from '~/types/types'
 
-function dayRadarParser(daysData: { listTasks: string[]; completedTasks: TTask[] }[]) {
+function dayRadarParser(daysData: { listTasks: string[]; completedTasks: ITask[] }[]) {
     if (daysData.length === 0) return { labels: [], dataset: [] }
 
     // = { taskName1: [0,100,0], ... , taskNameN: [x,y,z] }
+
     const rawSumData = daysData.reduce((acc, day) => {
         const completedTaskNames = day.completedTasks.map((task) => task.taskContent)
 

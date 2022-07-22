@@ -57,6 +57,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.subtitle {
-    @apply text-3xl border-b-2 inline w-fit;
+//*---Scrollbar---
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #222;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(16, 230, 33, 0.6);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+//*---Scrollbar---

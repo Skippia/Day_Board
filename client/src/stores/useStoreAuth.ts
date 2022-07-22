@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import { Tooltip } from '~/logic/Tooltip'
-import { apiService } from '~/services/ApiService'
+import { apiAuth } from '~/Api/ApiAuth'
 import type { IUserInfo } from '~/types/types'
 
 export const useStoreAuth = defineStore('auth', {
@@ -21,7 +20,7 @@ export const useStoreAuth = defineStore('auth', {
     },
     actions: {
         async login({ email, password }: { email: string; password: string }) {
-            const { data, error } = await apiService.login({
+            const { data, error } = await apiAuth.login({
                 body: { email, password },
             })
 
@@ -30,13 +29,9 @@ export const useStoreAuth = defineStore('auth', {
                 this.setIsAuth(true)
                 this.setIsAdmin(this.$state.userInfo.role === 'ADMIN')
             }
-            Tooltip.run({
-                error: !!error,
-                messageSuccess: data?.message,
-                messageFail: error,
-            })
 
-            return !error
+            //* => success status (true | false)
+            return { error, successMessage: data?.message }
         },
         // async signup() {},
         // async logout() {},

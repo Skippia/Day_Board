@@ -11,7 +11,7 @@
     //* It's time animation for fade transition
     useDelayRenderFix(overflowControl, 600)
 
-    const { getTabNames, getCurrentTabName, getRootRef, getCurrentClasses, getToggleElement } = useTabs(props)
+    const { getTabNames, getCurrentTabName, getRootRef, getCurrentClasses, getToggleElement } = useVTabs(props)
 </script>
 
 <template>
@@ -36,15 +36,13 @@
 </template>
 
 <style lang="scss" scoped>
-    @import '~/assets/styles/transitionAnimation.scss';
-    .tab__content {
-        @apply flex flex-col justify-center max-h-[65vh] h-full;
-    }
     .tab {
         @apply w-full h-full z-2 self-start;
     }
-
     .tab__toggle {
         @apply w-full py-2 text-center text-white text-2xl;
+    }
+    .tab__content {
+        @apply flex flex-col justify-center max-h-[65vh] h-full w-full;
     }
 </style>

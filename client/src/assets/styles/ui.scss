@@ -6,98 +6,12 @@
     --success-bg-color: #e0eee4;
 }
 
+//* Should be global
 .rotate-transform {
-    position: relative;
-    padding: 0.5em 0.5em;
+    padding: 0.5em;
 }
 
-.rotate-transform__text {
-    text-align: center;
-    writing-mode: vertical-lr;
-    transform: rotateZ(-170deg);
-    white-space: pre;
-}
-
-@keyframes shake {
-    0% {
-        transform: translate(1px, 1px);
-    }
-
-    10% {
-        transform: translate(-1px, -2px);
-    }
-
-    20% {
-        transform: translate(-3px, 0px);
-    }
-
-    30% {
-        transform: translate(3px, 2px);
-    }
-
-    40% {
-        transform: translate(1px, -1px);
-    }
-
-    50% {
-        transform: translate(-1px, 2px);
-    }
-
-    60% {
-        transform: translate(-3px, 1px);
-    }
-
-    70% {
-        transform: translate(3px, 1px);
-    }
-
-    80% {
-        transform: translate(-1px, -1px);
-    }
-
-    90% {
-        transform: translate(1px, 2px);
-    }
-
-    100% {
-        transform: translate(1px, -2px);
-    }
-}
-
-.submit-btn:hover {
-    transform: scale(1.1);
-}
-
-.help-message {
-    color: #8ac926;
-    font-weight: 400;
-}
-
-.error-message {
-    color: #ffd60a;
-    font-weight: 400;
-}
-
-input:focus {
-    outline: 1px solid rgba(200, 200, 200, 0.5);
-}
-
-.button-cyberpunk {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8em 1em;
-    position: relative;
-    text-transform: uppercase;
-    border: solid;
-    border-color: #07547d;
-    border-radius: 1%;
-    font-size: 1.5rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-}
-
+//? Should be global
 .notification {
     position: absolute;
     left: 50%;
@@ -111,53 +25,33 @@ input:focus {
     border: 2px solid rgba(231, 250, 26, 0.4);
     clip-path: polygon(5% 0, 100% 0, 100% 10%, 100% 70%, 95% 100%, 10% 100%, 0 100%, 0 10%);
 }
-
+//? Should be global
 .notification--fail {
     background-color: rgba(155, 34, 38, 0.7);
 }
 
+//? Should be global
 .notification--success {
     background-color: rgba(33, 131, 128, 0.7);
 }
 
+//? Should be global
 .tab-toggle-active {
     background-color: rgba(50, 2, 31, 0.6);
 }
+//? Should be global
+.tab-toggle-passive {
+    @apply hover:bg-[rgba(222,222,222,.3)] cursor-pointer duration-300 hover:scale-90;
+}
 
+//? Should be global
 .scroll-visible {
     overflow: auto;
 }
 
+//? Should be global
 .scroll-invisible {
     overflow: hidden;
-}
-
-.submit-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.8) !important;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: rgba(16, 230, 33, 0.6);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #222;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.submit-btn {
-    @apply text-black my-4 bg-white opacity-[30%] hover: opacity-[80%] duration-300 font-medium py-3 rounded text-3xl px-16;
 }
 
 .invalid {
@@ -167,18 +61,6 @@ input:focus {
     color: white;
 }
 
-.auth__header {
-    @apply text-white text-center my-2 font-bold text-3xl;
-}
-
-.auth {
-    @apply h-full w-full flex flex-col justify-center;
-}
-
 .auth__form {
     @apply flex flex-col w-4/5 mx-auto items-center h-full justify-evenly;
-}
-
-.outline-active-day {
-    @apply outline outline-2 outline-sky-500;
 }

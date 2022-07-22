@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { apiUser } from '~/API/ApiUser'
 
 const useStoreDay = defineStore('day', {
     state: () => ({
@@ -9,7 +10,7 @@ const useStoreDay = defineStore('day', {
     },
     actions: {
         async loadAllPageData() {
-            const { data, error } = await apiService.loadAllPageData({})
+            const { data, error } = await apiUser.loadAllPageData({})
 
             if (!error) {
                 //* Save all data
@@ -25,7 +26,7 @@ const useStoreDay = defineStore('day', {
             listTasks: string[]
             additionalUrlParams: string
         }) {
-            const { data, error } = await apiService.createDay({
+            const { data, error } = await apiUser.createDay({
                 body: { listTimes, listTasks },
                 additionalUrlParams,
             })

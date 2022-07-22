@@ -24,11 +24,11 @@
 </script>
 
 <template>
-    <AuthLayout>
-        <VTab
+    <auth-layout>
+        <v-tab
             :tab-data="tabData"
             :active-toggle-classes="['tab-toggle-active']"
-            :passive-toggle-classes="['hover:bg-[rgba(22,22,22,.3)] cursor-pointer duration-300 hover:scale-90']"
+            :passive-toggle-classes="['tab-toggle-passive']"
         >
             <template #dynamic-component="{ getCurrentTabName }">
                 <Transition name="fade" mode="out-in">
@@ -37,10 +37,8 @@
                     </keep-alive>
                 </Transition>
             </template>
-        </VTab>
-    </AuthLayout>
+        </v-tab>
+    </auth-layout>
 </template>
 
-<style lang="scss" scoped>
-    @import '~/assets/styles/transitionAnimation.scss';
-</style>
+<style lang="scss" scoped></style>
