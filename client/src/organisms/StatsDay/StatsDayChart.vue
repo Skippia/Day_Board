@@ -23,19 +23,20 @@
             <v-radar-chart-wrapper v-if="isRadarDataExist" :dataset="dataset" :labels="labels"></v-radar-chart-wrapper>
         </transition>
         <transition name="notification-day" mode="out-in">
-            <v-error-notification
-                v-if="!isRadarDataExist"
-                text-error="You don't have schedule for"
-                icon-class="i-carbon:warning"
-                font-size="250px"
-            >
-                <template #sub-text>
-                    <span class="error-notification__subtext">
-                        {{ isSingleMode ? 'this' : 'these' }}
-                    </span>
-                    {{ isSingleMode ? 'day' : 'days' }}
-                </template>
-            </v-error-notification>
+            <div absolute v-if="!isRadarDataExist">
+                <v-error-notification
+                    text-error="You don't have schedule for"
+                    icon-class="i-carbon:warning"
+                    font-size="250px"
+                >
+                    <template #sub-text>
+                        <span class="error-notification__subtext">
+                            {{ isSingleMode ? 'this' : 'these' }}
+                        </span>
+                        {{ isSingleMode ? 'day' : 'days' }}
+                    </template>
+                </v-error-notification>
+            </div>
         </transition>
     </div>
 </template>

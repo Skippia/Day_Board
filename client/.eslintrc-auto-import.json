@@ -71,6 +71,7 @@
     "useRouter": true,
     "useSlots": true,
     "useStoreAuth": true,
+    "useStoreConstructor": true,
     "useStoreDatePicker": true,
     "useStoreDay": true,
     "useStoreUser": true,

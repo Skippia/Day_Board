@@ -1,6 +1,6 @@
 <script setup lang="ts">
     interface Props {
-        options: { name: string; value: string }[]
+        options: { name: string; value: string | null }[]
         isOpen: boolean
         methods: {
             toggleSelect: () => void
@@ -8,7 +8,7 @@
             openSelect: () => void
             onMouseLeave: () => void
         }
-        modelValue: string
+        modelValue: { name: string; value: string | null }
         selectColor?: string
         selectBgColor?: string
         selectFontSize?: string
@@ -46,27 +46,29 @@
     const optionMargin = computed(() => props.optionMargin)
 
     const emit = defineEmits<{
-        (e: 'update:modelValue', value: string): void
+        (e: 'update:modelValue', info: { name: string; value: string }): void
     }>()
 
-    function updateTitleValue(value: string) {
-        emit('update:modelValue', value)
+    function updateTitleValue({ name, value }: { name: string; value: string }) {
+        emit('update:modelValue', { name, value })
         props.methods.closeSelect()
     }
+
+    const selectName = computed(() => props.modelValue.name)
 </script>
 
 <template>
     <div class="flex flex-col relative z-30">
         <p class="select" @click="props.methods.toggleSelect">
-            {{ modelValue }}
+            {{ selectName }}
         </p>
         <ul v-if="isOpen" @mouseleave="props.methods.onMouseLeave" class="absolute top-[50px] left-0 right-0">
             <li
                 class="option"
                 v-for="option of options"
                 :key="option.name"
-                :value="option.value"
-                @click="updateTitleValue(option.name)"
+                :value="(option.value as string)"
+                @click="updateTitleValue({ name: option.name, value: option.value as string })"
             >
                 {{ option.name }}
             </li>

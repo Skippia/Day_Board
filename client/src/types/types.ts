@@ -1,3 +1,5 @@
+import { Ref } from 'vue'
+
 interface IDate {
     year: number
     month: number
@@ -49,6 +51,14 @@ interface IFullDate {
     year: number
 }
 
+interface IMovedElement {
+    moved: {
+        element: Ref<{ name: string; id: string }>
+        newIndex: number
+        oldIndex: number
+    }
+}
+
 type IResponse = ({
     body,
     additionalUrlParams,
@@ -78,6 +88,7 @@ export type {
     IMapperForXTable,
     IDeskDayData,
     IResponse,
+    IMovedElement,
     TUserRole,
     TUserGender,
     TFunctionCondition,

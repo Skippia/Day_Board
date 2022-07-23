@@ -1,65 +1,58 @@
-<script setup lang="ts">
-    const arrayDraggable = [
-        { name: 'Tomato 1-st', id: 1 },
-        { name: 'English Walk', id: 2 },
-        { name: 'Write down dream', id: 3 },
-        { name: 'English grammar', id: 4 },
-        { name: 'Wake up at 08:00', id: 5 },
-        { name: 'Write down dream', id: 6 },
-        { name: 'English grammar', id: 7 },
-        { name: 'Tomato 2-st', id: 8 },
-        { name: 'English Walk', id: 2 },
-        { name: 'Write down dream', id: 3 },
-        { name: 'English grammar', id: 4 },
-        { name: 'Wake up at 08:00', id: 5 },
-        { name: 'Write down dream', id: 6 },
-        { name: 'English grammar', id: 7 },
-        { name: 'Tomato 2-st', id: 8 },
-        { name: 'English Walk', id: 2 },
-        { name: 'Write down dream', id: 3 },
-        { name: 'English grammar', id: 4 },
-        { name: 'Wake up at 08:00', id: 5 },
-        { name: 'Write down dream', id: 6 },
-        { name: 'English grammar', id: 7 },
-        { name: 'Tomato 2-st', id: 8 },
-        { name: 'English Walk', id: 2 },
-        { name: 'Write down dream', id: 3 },
-        { name: 'English grammar', id: 4 },
-        { name: 'Wake up at 08:00', id: 5 },
-        { name: 'Write down dream', id: 6 },
-        { name: 'English grammar', id: 7 },
-        { name: 'Tomato 2-st', id: 8 },
-    ]
+<script lang="ts" setup>
+    const storeConstructor = useStoreConstructor()
+
+    const list = computed(() => storeConstructor.getCurrentListTasks)
+
+    const updateList = (updateList: { id: string; name: string }[]) => {
+        storeConstructor.$state.currentListTasks = updateList
+    }
 </script>
 
 <template>
-    <div class="constructor__container">
+    <div class="constructor-content__container">
         <v-title icon-class="i-carbon:calendar-heat-map" text="Hello to creating template calendar"></v-title>
 
         <div class="configurator__container">
             <constructor-tasks-module></constructor-tasks-module>
             <constructor-time-module></constructor-time-module>
         </div>
-
-        <div class="draggable__container">
-            <v-draggable :array-draggable="arrayDraggable">
-                <v-badge v-for="element in arrayDraggable" :key="element.id">
-                    {{ element.name }}
-                    <v-icon icon-class="i-carbon-close-outline"></v-icon>
-                </v-badge>
-            </v-draggable>
+        <div class="draggable__container-wrapper">
+            <div class="draggable__container">
+                <v-error-notification
+                    v-if="Object.keys(list).length === 0"
+                    class="mb-5"
+                    horizontal
+                    icon-font-size="140px"
+                    text-font-size="35px"
+                    icon-class="i-carbon-face-dissatisfied"
+                    icon-color="#ff9f1c"
+                    text-color="#ffbf69"
+                >
+                    <template #sub-text>
+                        <p>
+                            You don't have any tasks yet.
+                            <br />
+                            Please, add tasks to your list.
+                        </p>
+                    </template>
+                </v-error-notification>
+                <v-draggable class="flex flex-wrap w-full gap-3" @update-list="updateList" :list="list"></v-draggable>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .constructor__container {
-        @apply flex flex-col h-full w-full justify-between gap-5 p-3 items-center rounded-2xl overflow-auto;
+    .constructor-content__container {
+        @apply flex flex-col h-full w-full gap-5 p-8 items-center rounded-2xl overflow-auto;
     }
     .configurator__container {
         @apply flex flex-wrap justify-center border-2 gap-5 border-light-100 border-dashed rounded-lg p-5;
     }
+    .draggable__container-wrapper {
+        @apply h-full flex items-center justify-center;
+    }
     .draggable__container {
-        @apply flex flex-wrap p-5;
+        @apply flex w-full justify-center flex-wrap p-5;
     }
 </style>

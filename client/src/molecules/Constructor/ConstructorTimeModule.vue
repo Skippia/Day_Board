@@ -1,13 +1,24 @@
 <script setup lang="ts">
     import { timeSeparatorOptions, startRangeOptions, endRangeOptions } from '~/utils/constants'
 
+    const storeConstructor = useStoreConstructor()
     const { isOpen: isOpenTimeSeparator, methodsSelect: methodsTimeSeparator } = useVSelect()
     const { isOpen: isOpenStartRange, methodsSelect: methodsStartRange } = useVSelect()
     const { isOpen: isOpenEndRange, methodsSelect: methodsEndRange } = useVSelect()
 
-    const timeSeparator = ref('Chose separator')
-    const startRange = ref('Start date...')
-    const endRange = ref('End date...')
+    const timeSeparator = ref({ name: 'Chose separator', value: null })
+    const startRange = ref({ name: 'Start date', value: null })
+    const endRange = ref({ name: 'End date', value: null })
+
+    watch(timeSeparator, (option) => {
+        storeConstructor.updateCurrentTimeSeparator(option.value)
+    })
+    watch(startRange, (option) => {
+        storeConstructor.updateCurrentStartTimeDay(option.value)
+    })
+    watch(endRange, (option) => {
+        storeConstructor.updateCurrentEndTimeDay(option.value)
+    })
 </script>
 
 <template>
@@ -19,7 +30,6 @@
                 <v-sub-title font-size="14px" color="rgba(209, 250, 229,0.5)">time separator</v-sub-title>
                 <v-select
                     v-model="timeSeparator"
-                    :model-value="timeSeparator"
                     :is-open="isOpenTimeSeparator"
                     :options="timeSeparatorOptions"
                     :methods="methodsTimeSeparator"
@@ -31,7 +41,6 @@
                 <v-sub-title font-size="14px" color="rgba(209, 250, 229,0.5)">start day</v-sub-title>
                 <v-select
                     v-model="startRange"
-                    :model-value="startRange"
                     :is-open="isOpenStartRange"
                     :options="startRangeOptions"
                     :methods="methodsStartRange"
@@ -43,7 +52,6 @@
                 <v-sub-title font-size="14px" color="rgba(209, 250, 229,0.5)">end day</v-sub-title>
                 <v-select
                     v-model="endRange"
-                    :model-value="endRange"
                     :is-open="isOpenEndRange"
                     :options="endRangeOptions"
                     :methods="methodsEndRange"

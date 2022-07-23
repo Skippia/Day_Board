@@ -14,6 +14,8 @@
         fontSize?: string
         borderStyle?: string
         borderColor?: string
+        errorStatus?: boolean
+        errorBorderColor?: string
     }
 
     const props = withDefaults(defineProps<Props>(), {
@@ -21,6 +23,8 @@
         fontSize: '20px',
         borderStyle: 'solid',
         borderColor: '#71dfbe',
+        errorBorderColor: 'rgba(249,65,68,0.70)',
+        errorStatus: false,
     })
 
     const myInput: Ref<null | HTMLElement> = ref(null)
@@ -30,6 +34,7 @@
         }
     })
 
+    const outlineColor = computed(() => (props.errorStatus && props.errorBorderColor) || props.borderColor)
     const modelValue = computed({
         get: () => props.modelValue,
         set: (value) => emit('update:modelValue', value),
@@ -42,12 +47,11 @@
 
 <style lang="scss" scoped>
     input {
-        outline: none;
         @apply text-white font-medium p-2 rounded shadow-md text-white;
         font-size: v-bind(fontSize);
 
         &:focus {
-            outline: 2px v-bind(borderStyle) v-bind(borderColor);
+            outline: 2px v-bind(borderStyle) v-bind(outlineColor);
         }
         &::placeholder {
             text-align: left;
