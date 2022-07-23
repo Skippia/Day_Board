@@ -34,6 +34,19 @@ const schemaUser = new Schema({
     enum: ['ADMIN', 'USER'],
     default: 'USER',
   },
+  defaultTemplate: {
+    type: {
+      _id: false,
+      },
+      listTasks: {
+        type: [String],
+        required: true
+      },
+      listTimes: {
+        type: [String],
+        required: true
+      }
+    },
 })
 
 schemaUser.pre('save', async function (next) {
@@ -42,13 +55,14 @@ schemaUser.pre('save', async function (next) {
 })
 
 schemaUser.statics.toClient = function (user) {
-  const { _id, email, name, role, gender } = user._doc
+  const { _id, email, name, role, gender, defaultTemplate } = user._doc
   return {
     _id,
     email,
     name,
     role,
     gender,
+    defaultTemplate
   }
 }
 const modelUser = model('User', schemaUser)

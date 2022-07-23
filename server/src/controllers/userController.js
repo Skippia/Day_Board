@@ -1,6 +1,8 @@
 import * as handlerFactory from '../utils/handlerFactory.js'
 import { Day } from '../models/Day.js'
+import { User } from '../models/User.js'
 import { filterBetween } from '../utils/filterBetween.js'
+import { catchAsync } from '../utils/catchAsync.js'
 
 const getDays = handlerFactory.getAll({ model: Day, isAdmin: false })
 
@@ -46,6 +48,26 @@ const filterDaysByDate = handlerFactory.getAll({
 })
 
 
-export { getDays, getDayById, modifyDayById, deleteDayById, createDay, filterDaysByDate }
+const createTemplate = catchAsync(async (req, res, next) => {
+  const newData = req.body
+  const userId = res.locals?.decoded?.userId
+
+  const data = await User.findOneAndUpdate(
+    {_id: userId}, 
+    { $set: { defaultTemplate : newData} },
+    {
+      returnNewDocument: true,
+      new: true,
+      strict: false
+    }
+  )
+
+
+
+  return res.status(200).json({ status: 'success?', data })
+})
+
+
+export { getDays, getDayById, modifyDayById, deleteDayById, createDay, createTemplate, filterDaysByDate }
 
 
