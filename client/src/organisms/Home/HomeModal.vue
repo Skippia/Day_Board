@@ -1,5 +1,15 @@
 <script setup lang="ts">
-    const { isOpen, openModal, closeModal } = useVModal(true)
+    const props = defineProps<{
+        openStatus: boolean
+    }>()
+
+    const openStatus = computed(() => props.openStatus)
+
+    const { isOpen, openModal, closeModal } = useVModal()
+
+    watch(openStatus, (value) => {
+        isOpen.value = value
+    })
 </script>
 
 <template>

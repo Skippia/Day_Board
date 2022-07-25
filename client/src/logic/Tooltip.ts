@@ -14,14 +14,20 @@ class TooltipConstructor {
     }
 
     draw({ status, message }: { status: string; message: string }) {
-        const tooltip = document.createElement('div')
-        tooltip.innerText = message
-        const specialClass = status === 'fail' ? 'notification--fail' : 'notification--success'
-        const timing = status === 'fail' ? 5000 : 2500
-        tooltip.classList.add('notification', specialClass)
-        document.body.append(tooltip)
+        const tooltipParent = document.createElement('div')
+        const tooltipChild = document.createElement('div')
 
-        this.clear(tooltip, timing)
+        tooltipParent.innerText = message
+        const specialClassPrefix = status === 'fail' ? 'notification--fail' : 'notification--success'
+        const timing = status === 'fail' ? 5000 : 2500
+
+        tooltipParent.classList.add('notification', `${specialClassPrefix}-text`)
+        tooltipChild.classList.add('notification__child', `${specialClassPrefix}-bg`)
+
+        tooltipParent.append(tooltipChild)
+        document.body.append(tooltipParent)
+
+        this.clear(tooltipParent, timing)
     }
 
     clear(tooltip: HTMLElement | null, timing: number) {

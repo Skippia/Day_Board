@@ -47,7 +47,7 @@ const logIn = ({ email, password }) => {
 const isAuth = (token) => {
   return new Promise((resolve, reject) => {
     if (!token) {
-      return reject(new createError(401, 'Anauthorized user. Token not exists!'))
+      return reject(new createError(401, 'Anauthorized user'))
     }
     jwt.verify(token, secretKey, (err, decoded) => {
       if (err) {

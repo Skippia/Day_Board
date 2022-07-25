@@ -10,6 +10,8 @@ const useVPaintEl = ({
     }
 
     onMounted(() => {
+        console.log('mopunted')
+
         const els = searcher()
         paintElements(els)
     })

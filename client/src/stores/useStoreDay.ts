@@ -9,8 +9,8 @@ const useStoreDay = defineStore('day', {
         getCurrentPageData: (state) => state.allPageData,
     },
     actions: {
-        async loadAllPageData() {
-            const { data, error } = await apiUser.loadAllPageData({})
+        async loadAllDays() {
+            const { data, error } = await apiUser.loadAllDays({})
 
             if (!error) {
                 //* Save all data

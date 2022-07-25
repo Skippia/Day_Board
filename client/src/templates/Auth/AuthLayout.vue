@@ -22,8 +22,9 @@
     }
     .glass-effect {
         background: linear-gradient(90deg, rgba(2, 2, 2, 0.8), rgba(222, 222, 222, 0.2));
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         border-radius: 32px;
+        box-shadow: rgba(24, 46, 70, 0.4) 5px 5px, rgba(40, 46, 10, 0.3) 10px 10px, rgba(40, 46, 70, 0.2) 15px 15px,
+            rgba(40, 46, 170, 0.1) 20px 20px, rgba(240, 46, 10, 0.05) 25px 25px;
         backdrop-filter: blur(1px);
     }
 </style>

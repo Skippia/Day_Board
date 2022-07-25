@@ -3,14 +3,24 @@ import { IResponse } from '~/types/types'
 
 class ApiUser {
     apiConfig: AxiosInstance
-    loadAllPageData: IResponse
+    loadAllDays: IResponse
     createDay: IResponse
     loadDaysByDate: IResponse
+    loadDefaultDayTemplate: IResponse
+    createDefaultDayTemplate: IResponse
 
     constructor(apiConfig: AxiosInstance) {
         this.apiConfig = apiConfig
-        this.loadAllPageData = useVFetch({
+        this.loadAllDays = useVFetch({
             url: '/get-days',
+            method: 'get',
+            apiConfig,
+            additionalReqOptions: {
+                withCredentials: true,
+            },
+        })
+        this.loadDefaultDayTemplate = useVFetch({
+            url: '/get-default-day-template',
             method: 'get',
             apiConfig,
             additionalReqOptions: {
@@ -28,6 +38,14 @@ class ApiUser {
         this.loadDaysByDate = useVFetch({
             url: '/get-days-by-date',
             method: 'get',
+            apiConfig,
+            additionalReqOptions: {
+                withCredentials: true,
+            },
+        })
+        this.createDefaultDayTemplate = useVFetch({
+            url: '/create-default-day-template',
+            method: 'put',
             apiConfig,
             additionalReqOptions: {
                 withCredentials: true,

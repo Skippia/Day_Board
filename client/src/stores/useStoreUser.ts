@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import type { ITask } from '~/types/types'
+import { apiUser } from '~/API/ApiUser'
+import type { IDefaultDayTemplate, ITask } from '~/types/types'
 
 export const useStoreUser = defineStore('user', {
     state: () => ({
@@ -43,11 +44,13 @@ export const useStoreUser = defineStore('user', {
             '22:30 - 00:00',
         ] as string[],
         dayData: {} as ITask[],
+        defaultDayTemplate: {} as IDefaultDayTemplate,
     }),
     getters: {
         getTimes: (state) => state.times,
         geITasks: (state) => state.tasks,
         getDayData: (state) => state.dayData,
+        getDefaultDayTemplate: (state) => state.defaultDayTemplate,
     },
     actions: {
         updateCurrentDay(items: Array<ITask>) {
@@ -75,6 +78,18 @@ export const useStoreUser = defineStore('user', {
         clearLocalStorage() {
             location.reload()
             localStorage.clear()
+        },
+        async loadCurrentUser() {
+            //? TODO: simultaneous requests via Promise.all
+            const { data, error } = await apiUser.loadDefaultDayTemplate({})
+
+            if (!error) {
+                this.$state.defaultDayTemplate = data?.data
+            }
+            console.log(data, error)
+
+            //* Error either exits or data doesn't exist
+            return { isError: !!error || !data?.data, errorCode: error?.status, message: error?.message }
         },
     },
 })

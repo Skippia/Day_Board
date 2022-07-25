@@ -1,66 +1,85 @@
 :root {
-    --primary-color: #0071fe;
-    --error-color: #f23648;
-    --error-bg-color: #fddfe2;
-    --success-color: #21a67a;
-    --success-bg-color: #e0eee4;
+  --primary-color: #0071fe;
+  --error-color: #f23648;
+  --error-bg-color: #fddfe2;
+  --success-color: #21a67a;
+  --success-bg-color: #e0eee4;
 }
 
 //* Should be global
 .rotate-transform {
-    padding: 0.5em;
+  padding: 0.5em;
 }
 
 //? Should be global
 .notification {
-    position: absolute;
-    left: 50%;
-    top: 0.1%;
-    text-align: center;
-    font-size: 27px;
-    padding: 10px;
-    width: 60%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    border: 2px solid rgba(231, 250, 26, 0.4);
-    clip-path: polygon(5% 0, 100% 0, 100% 10%, 100% 70%, 95% 100%, 10% 100%, 0 100%, 0 10%);
+  position: absolute;
+  left: 50%;
+  top: 0%;
+
+  text-align: center;
+  font-size: 55px;
+  font-weight: 300;
+  padding: 10px;
+  width: 60%;
+  transform: translateX(-50%);
+  background-color: rgba(2, 2, 2, 0.9);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: rgba(6, 214, 160, 1);
+}
+.notification__child {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
 //? Should be global
-.notification--fail {
-    background-color: rgba(155, 34, 38, 0.7);
+.notification--fail-bg {
+  background-color: rgba(239, 35, 60, 0.2);
+}
+.notification--fail-text {
+  color: rgb(239, 35, 60);
 }
 
 //? Should be global
-.notification--success {
-    background-color: rgba(33, 131, 128, 0.7);
+.notification--success-bg {
+  background: rgba(6, 214, 160, 0.3);
+}
+.notification--success-text {
+  color: rgba(6, 214, 160, 1);
 }
 
 //? Should be global
 .tab-toggle-active {
-    background-color: rgba(50, 2, 31, 0.6);
+  background-color: rgba(50, 2, 31, 0.6);
 }
 //? Should be global
 .tab-toggle-passive {
-    @apply hover:bg-[rgba(222,222,222,.3)] cursor-pointer duration-300 hover:scale-90;
+  @apply hover:bg-[rgba(222,222,222,.3)] cursor-pointer duration-300 hover:scale-90;
 }
 
 //? Should be global
 .scroll-visible {
-    overflow: auto;
+  overflow: auto;
 }
 
 //? Should be global
 .scroll-invisible {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .invalid {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
-    background-color: #9e2a2b !important;
-    color: white;
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+  background-color: #9e2a2b !important;
+  color: white;
 }
 
 .auth__form {
-    @apply flex flex-col w-4/5 mx-auto items-center h-full justify-evenly;
+  @apply flex flex-col w-4/5 mx-auto items-center h-full justify-evenly;
 }

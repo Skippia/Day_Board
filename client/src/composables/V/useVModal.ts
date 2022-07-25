@@ -1,4 +1,4 @@
-const useVModal = (initState = true) => {
+const useVModal = (initState = false) => {
     const isOpen = ref(initState)
 
     const openModal = () => {

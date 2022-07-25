@@ -18,9 +18,11 @@ const months = [
     'December',
 ]
 const timeSeparatorOptions = [
-    { name: '4 hours', value: '240' },
-    { name: '2 hours', value: '120' },
+    { name: '30 min', value: '30' },
+    { name: '45 min', value: '45' },
     { name: '1 hours', value: '60' },
+    { name: '2 hours', value: '120' },
+    { name: '4 hours', value: '240' },
 ]
 const startRangeOptions = [
     { name: '06:00', value: '6' },

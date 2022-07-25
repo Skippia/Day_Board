@@ -4,6 +4,7 @@
         color?: string
         bgColor?: string
         fontSize?: string
+        disabled?: boolean
     }
 
     const props = withDefaults(defineProps<Props>(), {
@@ -11,11 +12,12 @@
         color: 'white',
         bgColor: 'rgba(22, 22, 22, 0.9)',
         fontSize: '30px',
+        disabled: false,
     })
 </script>
 
 <template>
-    <button class="btn" :type="type">
+    <button class="btn" :type="type" :disabled="disabled" :class="{ 'btn--disabled': disabled }">
         <slot />
     </button>
 </template>
@@ -32,5 +34,8 @@
 
     .btn:focus {
         outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+    }
+    .btn--disabled {
+        @apply opacity-10 hover:scale-100 hover:opacity-10 hover:cursor-not-allowed;
     }
 </style>

@@ -20,7 +20,7 @@
         <div class="constructor-overlay__content rounded-2xl">
             <slot></slot>
         </div>
-        <button class="button-create-template mt-5">Save template</button>
+        <!-- <button class="button-create-template mt-5">Save template</button> -->
     </div>
 </template>
 

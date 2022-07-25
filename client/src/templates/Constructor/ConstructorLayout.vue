@@ -20,7 +20,9 @@
         <div class="constructor-content__layout rounded-2xl">
             <slot name="constructor-content" />
         </div>
-        <slot name="button-save" />
+        <div class="constructor-buttons__layout">
+            <slot name="buttons" />
+        </div>
     </div>
 </template>
 
@@ -35,5 +37,11 @@
         max-height: v-bind(maxHeight);
         min-height: v-bind(minHeight);
         background-color: v-bind(bgColor);
+    }
+    .constructor-buttons__layout {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        column-gap: 5%;
     }
 </style>

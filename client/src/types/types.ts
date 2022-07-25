@@ -51,12 +51,9 @@ interface IFullDate {
     year: number
 }
 
-interface IMovedElement {
-    moved: {
-        element: Ref<{ name: string; id: string }>
-        newIndex: number
-        oldIndex: number
-    }
+interface IDefaultDayTemplate {
+    listTimes: string[]
+    listTasks: string[]
 }
 
 type IResponse = ({
@@ -73,7 +70,7 @@ type IResponseError = {
 }
 type TUserGender = 'MALE' | 'FEMALE'
 type TUserRole = 'USER' | 'ADMIN'
-type TNetworkMethod = 'get' | 'post' | 'patch' | 'delete'
+type TNetworkMethod = 'get' | 'post' | 'patch' | 'put' | 'delete'
 type TMouseEvent = (e: MouseEvent) => void
 type TFunctionCondition = TFlexFunction<boolean>
 type TFlexFunction<R = void> = (...args: any[]) => R
@@ -88,7 +85,7 @@ export type {
     IMapperForXTable,
     IDeskDayData,
     IResponse,
-    IMovedElement,
+    IDefaultDayTemplate,
     TUserRole,
     TUserGender,
     TFunctionCondition,

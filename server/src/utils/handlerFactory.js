@@ -43,9 +43,13 @@ const getAll = ({ model, pathId, filterConfig, isAdmin = true }) =>
 
 const getOne = ({ model, pathId, isAdmin = true }) =>
   catchAsync(async (req, res, next) => {
-    const { field, type } = pathId
-    const id = req[type][field]
-    let findOptions = { _id: id }
+    let findOptions = null
+    
+    if (pathId) {
+      const { field, type } = pathId
+      const id = req[type][field]
+      findOptions = { _id: id }
+    }
 
     //* If it's not an admin so narrow the search
     if (!isAdmin) {

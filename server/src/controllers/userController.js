@@ -3,6 +3,7 @@ import { Day } from '../models/Day.js'
 import { User } from '../models/User.js'
 import { filterBetween } from '../utils/filterBetween.js'
 import { catchAsync } from '../utils/catchAsync.js'
+import createError from 'http-errors'
 
 const getDays = handlerFactory.getAll({ model: Day, isAdmin: false })
 
@@ -47,8 +48,7 @@ const filterDaysByDate = handlerFactory.getAll({
   isAdmin: false,
 })
 
-
-const createTemplate = catchAsync(async (req, res, next) => {
+const createDefaultDayTemplate = catchAsync(async (req, res, next) => {
   const newData = req.body
   const userId = res.locals?.decoded?.userId
 
@@ -61,13 +61,27 @@ const createTemplate = catchAsync(async (req, res, next) => {
       strict: false
     }
   )
-
-
-
   return res.status(200).json({ status: 'success?', data })
 })
 
+const getDefaultDayTemplate = catchAsync(async (req, res, next) => {
+  const userId = res.locals?.decoded?.userId
 
-export { getDays, getDayById, modifyDayById, deleteDayById, createDay, createTemplate, filterDaysByDate }
+  const defaultTemplate = (await User.findOne({
+    _id: userId,
+  }))?.defaultTemplate
+
+
+  if (!defaultTemplate) {
+    return next(new createError(400, 'No default template found'))
+  }
+
+  
+  return res.status(200).json({ status: 'success', data: defaultTemplate })
+})
+
+
+export { getDays, getDefaultDayTemplate, getDayById, modifyDayById,
+  deleteDayById, createDay, createDefaultDayTemplate, filterDaysByDate }
 
 
